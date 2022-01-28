@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           color: const Color(0xff17edf1),
         ),
       ),
-      home: LoginPage(),
+      home: PatientProfile(),
     );
   }
 }
