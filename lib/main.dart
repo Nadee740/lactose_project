@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/Login.dart';
@@ -18,16 +19,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
-      home: DoctorList(),
-=======
+      home: CurrAppointment(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
         ),
       ),
-      home: PatientProfile(),
->>>>>>> 2513c81394f27c0b84180e141f67ffa181cf870c
+
+
     );
   }
 }
