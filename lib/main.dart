@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyStatefulWidget(),
+      home: DoctorList(),
     );
   }
 }

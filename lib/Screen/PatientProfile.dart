@@ -8,16 +8,6 @@ class PatientProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body:Container(
-      //   height: MediaQuery.of(context).size.height/2.3,
-      //   decoration: BoxDecoration(
-      //     gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)]),
-      //   ),
-      //
-      //
-      //   // gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)])
-      // ),
-
         body: Container(
 
           child: Column(
