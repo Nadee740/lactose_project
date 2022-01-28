@@ -7,8 +7,6 @@ class PatientProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-=======
         // body:Container(
         //   height: MediaQuery.of(context).size.height/2.3,
         //   decoration: BoxDecoration(
@@ -19,7 +17,6 @@ class PatientProfile extends StatelessWidget {
         //   // gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)])
         // ),
 
->>>>>>> 2513c81394f27c0b84180e141f67ffa181cf870c
         body: Container(
       child: Column(
         children: [
