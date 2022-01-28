@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ShowHospitals extends StatefulWidget {
+class ShowAmbulance extends StatefulWidget {
+  const ShowAmbulance({Key? key}) : super(key: key);
+
   @override
-  _ShowHospitalsState createState() => _ShowHospitalsState();
+  _ShowAmbulanceState createState() => _ShowAmbulanceState();
 }
 
-class _ShowHospitalsState extends State<ShowHospitals> {
+class _ShowAmbulanceState extends State<ShowAmbulance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
