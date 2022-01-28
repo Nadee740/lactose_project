@@ -102,13 +102,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
+=======
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
+>>>>>>> d7edb20354e0a76858f50b973a01427da9b6f7a7
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "3.1.4"
+=======
+    version: "4.0.0"
+>>>>>>> d7edb20354e0a76858f50b973a01427da9b6f7a7
   lints:
     dependency: transitive
     description:
