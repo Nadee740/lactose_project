@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart';
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-   // Future<String> getData() async{
-   //   var res=await http.get(
-   //     Uri.encodeFull("http://localhost:8000/doctors"),
-   //     headers:{
-   //       "Accept":""
-   //     }
-   //   )
-   // }
+class ShowHospitals extends StatefulWidget {
+  @override
+  _ShowHospitalsState createState() => _ShowHospitalsState();
+}
+
+class _ShowHospitalsState extends State<ShowHospitals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,72 +28,6 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('App-Name'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Appointment'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Test Report'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Hospitals'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Lab'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Ambulance'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Send Feedback'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -110,7 +38,7 @@ class Home extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                       contentPadding:
-                          const EdgeInsets.symmetric(vertical: 15.0),
+                      const EdgeInsets.symmetric(vertical: 15.0),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -121,7 +49,7 @@ class Home extends StatelessWidget {
                           borderSide: BorderSide(
                               width: 0.8,
                               color: Theme.of(context).primaryColor)),
-                      hintText: "Search By Hospitals",
+                      hintText: "Search..",
                       prefixIcon: const Icon(
                         Icons.search,
                         size: 30,
