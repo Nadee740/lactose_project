@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/Login.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           color: const Color(0xff17edf1),
         ),
       ),
-      home: ShowDoctorDetails(),
+      home: LoginPage(),
     );
   }
 }

@@ -132,7 +132,7 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ElevatedButton(
                       child: const Text(
-                        'Login',
+                        'Sign Up',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'f',
