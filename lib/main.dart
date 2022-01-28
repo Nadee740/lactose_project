@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PatientProfile(),
+      debugShowCheckedModeBanner: false,
+      home: MyStatefulWidget(),
     );
   }
 }
