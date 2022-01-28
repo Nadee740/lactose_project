@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ShowHospitals(),
+      home: PatientProfile(),
     );
   }
 }
