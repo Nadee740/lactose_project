@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 class DoctorList extends StatelessWidget {
   const DoctorList({Key? key}) : super(key: key);
 
@@ -102,7 +103,7 @@ class DoctorList extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                       contentPadding:
-                      const EdgeInsets.symmetric(vertical: 15.0),
+                          const EdgeInsets.symmetric(vertical: 15.0),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -123,24 +124,20 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -158,62 +155,64 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff1d3d7d),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -231,62 +230,64 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff17edf1),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -304,62 +305,64 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff1d3d7d),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -377,62 +380,64 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff1d3d7d),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -450,62 +455,64 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff1d3d7d),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
               Card(
-
                 child: Column(
                   children: [
                     Container(
                       child: Container(
-
-                        alignment: Alignment(0.0,2.5),
+                        alignment: Alignment(0.0, 2.5),
                         child: CircleAvatar(
                           child: Icon(
                             Icons.account_circle_sharp,
                             size: 130,
-
                           ),
-                          backgroundColor:Color(0xff1182d0),
+                          backgroundColor: Color(0xff1182d0),
                           radius: 65.0,
                         ),
                       ),
-
                     ),
                     RatingBar.builder(
                       itemSize: 25,
@@ -523,45 +530,49 @@ class DoctorList extends StatelessWidget {
                         print(rating);
                       },
                     ),
-
                     InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
                         debugPrint('Card tapped.');
                       },
-                      child:  SizedBox(
+                      child: SizedBox(
                         width: double.infinity,
                         height: 125,
-
                         child: Column(
                           children: [
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text('DR.MOKNER WAND')),
                             Text("DENTISTS"),
                             Text("Hospital"),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Container(
                               height: 50,
-                              width:300,
+                              width: 300,
                               child: RaisedButton(
-
-                                color:Color(0xff1d3d7d),
-                                child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                                shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                color: Color(0xff1d3d7d),
+                                child: Text(
+                                  "Book Appointment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontFamily: 'A'),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
-
                           ],
                         ),
-
                       ),
                     ),
-
                   ],
                 ),
               ),
-
-
             ],
           ),
         ),
