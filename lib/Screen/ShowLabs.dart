@@ -1,14 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PatientProfile extends StatelessWidget {
-  const PatientProfile({Key? key}) : super(key: key);
+class ShowsLabs extends StatefulWidget {
+  const ShowsLabs({Key? key}) : super(key: key);
 
+  @override
+  _ShowsLabsState createState() => _ShowsLabsState();
+}
+
+class _ShowsLabsState extends State<ShowsLabs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-=======
         // body:Container(
         //   height: MediaQuery.of(context).size.height/2.3,
         //   decoration: BoxDecoration(
@@ -19,7 +21,6 @@ class PatientProfile extends StatelessWidget {
         //   // gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)])
         // ),
 
->>>>>>> 2513c81394f27c0b84180e141f67ffa181cf870c
         body: Container(
       child: Column(
         children: [
@@ -56,12 +57,10 @@ class PatientProfile extends StatelessWidget {
               Text(
                 "Name",
                 style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.black,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'f',
-                ),
+                    fontSize: 25.0,
+                    color: Colors.blueGrey,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w400),
               ),
               SizedBox(
                 height: 10,
@@ -69,12 +68,10 @@ class PatientProfile extends StatelessWidget {
               Text(
                 "age:50",
                 style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black45,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'f',
-                ),
+                    fontSize: 18.0,
+                    color: Colors.black45,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: 10,
@@ -82,12 +79,10 @@ class PatientProfile extends StatelessWidget {
               Text(
                 "Place",
                 style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black45,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'f',
-                ),
+                    fontSize: 18.0,
+                    color: Colors.black45,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: 10,
@@ -95,12 +90,10 @@ class PatientProfile extends StatelessWidget {
               Text(
                 "Email || Phone Number",
                 style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black45,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'f',
-                ),
+                    fontSize: 18.0,
+                    color: Colors.black45,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w300),
               ),
             ]),
           ),
@@ -113,19 +106,10 @@ class PatientProfile extends StatelessWidget {
                 width: 300,
                 height: 70,
                 child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    //to set border radius to button
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  color: Color(0xff17edf1),
+                  color: Color(0xff1182d0),
                   child: Text(
                     "Appointment",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'f',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(color: Colors.white, fontFamily: 'A'),
                   ),
                   onPressed: () {},
                 ),
@@ -137,19 +121,10 @@ class PatientProfile extends StatelessWidget {
                 width: 300,
                 height: 70,
                 child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    //to set border radius to button
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  color: Color(0xff17edf1),
+                  color: Color(0xff1182d0),
                   child: Text(
                     "Report",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'f',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: TextStyle(color: Colors.white, fontFamily: 'A'),
                   ),
                   onPressed: () {},
                 ),
