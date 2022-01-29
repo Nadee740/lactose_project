@@ -19,7 +19,12 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "App-Name",
-          style: TextStyle(fontSize: 30, fontFamily: 'f', color: Colors.black),
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'f',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
@@ -28,6 +33,7 @@ class Home extends StatelessWidget {
             icon: Icon(
               Icons.person,
               color: Colors.black,
+              size: 30,
             ),
             onPressed: () {
               // do something
@@ -59,6 +65,7 @@ class Home extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -183,8 +190,12 @@ class Home extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: const BorderSide(width: 1)),
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: const BorderSide(
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                         borderSide: BorderSide(
@@ -393,8 +404,6 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
-
-
     );
   }
 }
