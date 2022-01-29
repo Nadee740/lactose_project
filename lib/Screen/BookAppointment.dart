@@ -182,8 +182,14 @@ class _BookAppointmentState extends State<BookAppointment> {
           child: Column(
             children: [
               Container(
-                color: Colors.grey,
-                height: 250,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                  ),
+                ),
+                height: 390,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
@@ -193,64 +199,64 @@ class _BookAppointmentState extends State<BookAppointment> {
                           Icons.account_circle_sharp,
                           size: 130,
                         ),
-                        backgroundColor: Color(0xff0d1113),
+                        backgroundColor: Color(0xff1182d0),
                         radius: 65.0,
                       ),
                     ),
-                    Text("Dr.XXXXX",style:TextStyle(color: Colors.black,fontSize: 40,),),
-                    Text("Dentist, Hospital",style:TextStyle(color: Colors.black,fontSize: 25,),),
-                    Padding(padding: const EdgeInsets.only(top: 15),),
+                    Text("Dr.XXXXX",style:TextStyle(color: Colors.black,fontSize: 40,fontFamily: 'f',),),
+                    Text("Dentist, Hospital",style:TextStyle(color: Colors.black,fontSize: 25,fontFamily: 'f',),),
+                    Padding(padding: const EdgeInsets.only(top: 6),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          child: Center(child: Text("Patients:500+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
-                          color: Color(0xff4fe5a8),
-                          height: 20,
+                          child: Center(child: Text("Patients:500+",style: TextStyle(color:Colors.black,fontFamily: 'f',),)),
+                          color: Color(0xfffcaf7d4),
+                          height: 25,
                           width: MediaQuery.of(context).size.width/3.5,
                         ),
                         Container(
-                          child: Center(child: Text("Experience:10 Yrs+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
-                          color: Color(0xff4fe5a8),
-                          height: 20,
+                          child: Center(child: Text("Experience:10 Yrs+",style: TextStyle(color:Colors.black,fontFamily: 'f'),)),
+                          color: Color(0xffcaf7d4),
+                          height: 25,
                           width: MediaQuery.of(context).size.width/3.3,
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                color: Colors.orange,
-                height: 120,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    Padding(padding: const EdgeInsets.only(top: 20),),
+
+                    Padding(padding: const EdgeInsets.only(top: 30),),
                     Container(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("About Doctor",style: TextStyle(fontSize: 25),),
+                      width:MediaQuery.of(context).size.width/1.10 ,
+                      child: Column(
+
+                        children: [
+                          Container(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("About Doctor",style: TextStyle(fontSize: 25,fontFamily: 'f'),),
+                            ),
+                          ),
+                          Padding(padding: const EdgeInsets.only(top: 6),),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(" and more recently withthe release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem ",style: TextStyle(fontSize: 10,fontFamily: 'f'),),
+                          ),
+                        ],
                       ),
-                    ),
-                    Padding(padding: const EdgeInsets.only(top: 20),),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(" and more recently withthe release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem ",style: TextStyle(fontSize: 10),),
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Container(
-                  color: Colors.lightBlueAccent,
+                  color: Color(0xffffffff),
                   child: Column(
                     children: [
                       Padding(padding: const EdgeInsets.only(top: 20),),
                       Container(
                         child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Book Slot",style: TextStyle(fontSize: 25),),
+                          alignment: Alignment.center,
+                          child: Text("Book Slot",style: TextStyle(fontSize: 25,fontFamily: 'f'),),
                         ),
                       ),
                       Container(
@@ -275,19 +281,19 @@ class _BookAppointmentState extends State<BookAppointment> {
                             Padding(padding: const EdgeInsets.only(top: 20),),
                             Container(
                               child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text("Time",style: TextStyle(fontSize: 25),),
+                                alignment: Alignment.center,
+                                child: Text("Time",style: TextStyle(fontSize: 25,fontFamily: 'f'),),
                               ),
                             ),
                             TimeRange(
-                              fromTitle: Text('From', style: TextStyle(fontSize: 18, color: Colors.grey),),
-                              toTitle: Text('To', style: TextStyle(fontSize: 18, color: Colors.grey),),
+                              fromTitle: Text('From', style: TextStyle(fontSize: 18, color: Colors.black,fontFamily: 'f'),),
+                              toTitle: Text('To', style: TextStyle(fontSize: 18, color: Colors.black,fontFamily: 'f'),),
                               titlePadding: 20,
                               textStyle: TextStyle(fontWeight: FontWeight.normal, color: Colors.black87),
-                              activeTextStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                              activeTextStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                               borderColor: Colors.black,
                               backgroundColor: Colors.transparent,
-                              activeBackgroundColor: Colors.orange,
+                              activeBackgroundColor: Color(0xffcaf7d4),
                               firstTime: TimeOfDay(hour: 9, minute: 30),
                               lastTime: TimeOfDay(hour: 16, minute: 00),
                               timeStep: 30,
@@ -300,10 +306,15 @@ class _BookAppointmentState extends State<BookAppointment> {
                       Padding(padding: const EdgeInsets.only(top: 50),),
                       Container(
                         width:300,
-                        height: 50,
+                        height: 70,
                         child: RaisedButton(
-                          color:Color(0xff1d3d7d),
-                          child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                          shape: RoundedRectangleBorder(
+                            //to set border radius to button
+                            borderRadius:
+                            BorderRadius.circular(15),
+                          ),
+                          color:Color(0xff17edf1),
+                          child: Text("Book Appointment",style: TextStyle(color: Colors.black,fontFamily: 'f',fontSize: 21,fontWeight: FontWeight.w400,),),
                           onPressed: () {
                             showAlertDialog(context);
                           },

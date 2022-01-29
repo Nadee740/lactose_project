@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 
 import 'package:url_launcher/url_launcher.dart';
-=======
+
 import 'dart:convert';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -16,7 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
->>>>>>> cdce593553c984b4c5a3bc69125c0c60bba85013
+
 
 class ShowHospitals extends StatefulWidget {
   @override

@@ -37,16 +37,15 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   timelines: ^0.1.0
   url_launcher: ^6.0.18
-<<<<<<< HEAD
   table_calendar: ^3.0.3
   time_range: ^1.0.2
   alert_dialog: ^1.0.0
 
 
-=======
+
   sqflite: ^2.0.2
   flutter_secure_storage: ^5.0.2
->>>>>>> cdce593553c984b4c5a3bc69125c0c60bba85013
+
 
 dev_dependencies:
   flutter_test:
