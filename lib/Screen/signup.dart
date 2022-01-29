@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:lactose_project/Screen/Home.dart';
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
 
@@ -10,7 +13,48 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController placeController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  List<dynamic> Signupresult=<dynamic>[];
+ bool isloading=false;
+  Future<void> SubmitSignup() async {
+     print("hy");
+     var res=await http.post(
+      Uri.parse('http://10.0.2.2:8000/users'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name':nameController.text,
+        'email':emailController.text,
+        'password':passwordController.text,
+        'age':ageController.text,
+        'phone':phoneController.text,
+        'gender':genderController.text,
+        'place':placeController.text
+      }),
+    );
 
+     var responsebody=json.decode(res.body);
+     print("hyyy");
+     print(responsebody['status']);
+     if(responsebody['status'].toString()=='failed')
+       { Navigator.pushReplacement(context,
+           MaterialPageRoute(builder: (BuildContext context) {
+             return Home();
+           }));
+
+       }
+     // print(responsebody['data'][0]['name']);
+
+
+    setState(() {
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +101,18 @@ class _SignupPageState extends State<SignupPage> {
                     controller: nameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'User Name',
+                      labelText: 'Name',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'email',
                     ),
                   ),
                 ),
@@ -72,47 +127,47 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
+
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
+
+                    controller: ageController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'Age',
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
+
+                    controller: phoneController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'Phone',
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
+                    controller: genderController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'Gender',
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
+
+                    controller: placeController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'Place',
                     ),
                   ),
                 ),
@@ -121,7 +176,7 @@ class _SignupPageState extends State<SignupPage> {
                     //forgot password screen
                   },
                   child: const Text(
-                    'Forgot Password',
+                    'Already registered',
                     style: TextStyle(
                       fontFamily: 'f',
                     ),
@@ -140,8 +195,8 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                       onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
+                        print('hy');
+                        SubmitSignup();
                       },
                     )),
                 Row(
@@ -156,7 +211,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                       onPressed: () {
-                        //signup screen
+                        SubmitSignup();
                       },
                     )
                   ],
