@@ -1,8 +1,60 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class CurrAppointment extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
+class CurrAppointment extends StatefulWidget {
   const CurrAppointment({Key? key}) : super(key: key);
 
+  @override
+  State<CurrAppointment> createState() => _CurrAppointmentState();
+}
+
+class _CurrAppointmentState extends State<CurrAppointment> {
+
+   Map Appointments=Map <String,dynamic>();
+  bool loading=false;
+  Future<void> getDataFromApi() async {
+
+    final storage = new FlutterSecureStorage();
+
+    var url = "http://10.0.2.2:8000/appointments/me";
+    var token = await storage.read(key: "jwtToken");
+
+    var res = await http.get(Uri.parse(url), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWYzYjMzMDk4ZGMzZGEwNThhNGFiM2UiLCJpYXQiOjE2NDMzNjEwNzN9.r9L2BWz3H6hI6DYUpqQzXWj69RAJ9DkgqgHz3xm6y1o'
+    },);
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
+    var responsebody=json.decode(res.body);
+    var url2="http://10.0.2.2:8000/doctor/61f52bd822ea8a21cc1edab6";
+    var drres = await http.get(Uri.parse(url2), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },);
+    var responsebodydr=json.decode(drres.body);
+    var url3="http://10.0.2.2:8000/hospital/61f3a7172d4cbe443c39d66b";
+    var hospres = await http.get(Uri.parse(url3), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },);
+    var responsebodyhosp=json.decode(hospres.body);
+    print(responsebody);
+    print(responsebodydr);
+    print(responsebodyhosp);
+    setState(() {
+      Appointments={'res':responsebody[responsebody.length-1],'dr':responsebodydr['data'],'hosp':responsebodyhosp['data']};
+
+      loading=false;
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      loading=true;
+    });
+    getDataFromApi();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +203,7 @@ class CurrAppointment extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
+      body:loading?Container(height: MediaQuery.of(context).size.height,child: Center(child: CircularProgressIndicator(backgroundColor: Colors.cyan,),),):Container(
         child: Center(
           child: Container(
             width: MediaQuery.of(context).size.width / 1.2,
@@ -232,10 +284,10 @@ class CurrAppointment extends StatelessWidget {
                       ),
                       Container(
                         child: Text(
-                          "Doctor: Alfin",
+                          "Doctor: ${Appointments['dr']['name']}",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 25,
+                            fontSize: 20,
                             fontFamily: 'f',
                           ),
                         ),
@@ -245,37 +297,28 @@ class CurrAppointment extends StatelessWidget {
                       ),
                       Container(
                         child: Text(
-                          "Date: 10/02/22",
+                           Appointments['res']['date'],
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'f',
-                            fontSize: 25,
+                            fontSize: 18,
                           ),
                         ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      Container(
-                        child: Text(
-                          "Time:10.45 AM",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontFamily: 'f',
-                          ),
-                        ),
-                      ),
+
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Container(
                         child: Text(
-                          "Hospital:Relief",
+                          "Hospital:${Appointments['hosp']['name']}",
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'f',
-                            fontSize: 25,
+                            fontSize: 18,
                           ),
                         ),
                       ),
