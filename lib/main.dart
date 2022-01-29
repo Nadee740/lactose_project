@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
+import 'package:lactose_project/Screen/BookAppointment.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -28,7 +32,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+
+      debugShowCheckedModeBanner: false,
+
+
+      home: BookAppointment(),
+
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
