@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DoctorList(),
+      home: CurrAppointment(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
