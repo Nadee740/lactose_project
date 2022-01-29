@@ -22,10 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
 
       home: TestReport(),
 
 
+=======
+      home: DoctorList(),
+>>>>>>> 46ba8915806b362f1a46987afb4255d008297727
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),

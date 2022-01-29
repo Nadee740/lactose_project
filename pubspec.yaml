@@ -35,7 +35,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   flutter_rating_bar: ^4.0.0
+<<<<<<< HEAD
   timelines: ^0.1.0
+=======
+  url_launcher: ^6.0.18
+>>>>>>> 46ba8915806b362f1a46987afb4255d008297727
 
 dev_dependencies:
   flutter_test:
@@ -60,8 +64,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  #   - images\doctor_bg.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
