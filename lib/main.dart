@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/Login.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +20,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ShowHospitals(),
+      debugShowCheckedModeBanner: false,
+
+      home: CurrAppointment(),
+
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: const Color(0xff17edf1),
+        ),
+      ),
+
     );
+
   }
 }

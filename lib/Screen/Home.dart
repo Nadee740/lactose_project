@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
+import 'dart:ui';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,26 +17,27 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App-Name"),
+        title: Text(
+          "App-Name",
+          style: TextStyle(fontSize: 30, fontFamily: 'f', color: Colors.black),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
-        // leading: Icon(
-        //   Icons.account_circle_rounded,
-        // ),
         actions: <Widget>[
-          Container(
-            child: IconButton(
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.black,
             ),
+            onPressed: () {
+              // do something
+            },
           )
         ],
       ),
       drawer: Drawer(
+        backgroundColor: Colors.white,
+
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
         // space to fit everything.
@@ -45,54 +47,120 @@ class Home extends StatelessWidget {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                gradient: LinearGradient(
+                  colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                ),
               ),
-              child: Text('App-Name'),
+              child: Center(
+                child: Text(
+                  'App-Name',
+                  style: TextStyle(
+                    fontFamily: 'f',
+                    fontSize: 50,
+                  ),
+                ),
+              ),
             ),
             ListTile(
-              title: const Text('Home'),
+              title: const Text(
+                'Home',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
               },
             ),
             ListTile(
-              title: const Text('Appointment'),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              selectedTileColor: Colors.grey[300],
+              title: const Text(
+                'Appointment',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
               },
             ),
             ListTile(
-              title: const Text('Test Report'),
+              title: const Text(
+                'Test Report',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
               },
             ),
             ListTile(
-              title: const Text('Hospitals'),
+              title: const Text(
+                'Hospitals',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Lab',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
               },
             ),
             ListTile(
-              title: const Text('Lab'),
+              title: const Text(
+                'Ambulance',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
               },
             ),
             ListTile(
-              title: const Text('Ambulance'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Send Feedback'),
+              title: const Text(
+                'Send Feedback',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -115,97 +183,209 @@ class Home extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(width: 0.8)),
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide: const BorderSide(width: 1)),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide(
-                              width: 0.8,
-                              color: Theme.of(context).primaryColor)),
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                      ),
                       hintText: "Search By Hospitals",
                       prefixIcon: const Icon(
                         Icons.search,
                         size: 30,
+                        color: Colors.black,
                       ),
                       suffixIcon: IconButton(
-                          icon: const Icon(Icons.clear), onPressed: () {})),
+                          icon: const Icon(Icons.clear),
+                          color: Colors.black,
+                          onPressed: () {})),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('PSYCHIATRISTS'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'PSYCHIATRISTS',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('NEUROlLOGIST'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'NEUROlLOGIST',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('PEDIATRICIANS'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'PEDIATRICIANS',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('CARDIOLOGISTS'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                          child: Text(
+                        'CARDIOLOGISTS',
+                        style: TextStyle(
+                          fontFamily: 'f',
+                          fontSize: 25,
+                        ),
+                      )),
+                    ),
                   ),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('GYNECOLOGISTS'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'GYNECOLOGISTS',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 125,
-                    child: Text('DENTISTS'),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      debugPrint('Card tapped.');
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'DENTISTS',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -213,6 +393,8 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
+
+
     );
   }
 }

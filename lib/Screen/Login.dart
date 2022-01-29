@@ -1,187 +1,144 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class LoginPage extends StatefulWidget {
-//   @override
-//   _LoginPageState createState() => _LoginPageState();
-// }
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
-// class _LoginPageState extends State<LoginPage> {
-//   bool hidePassword = true;
-//   bool isApiCallProcess = false;
-//   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
-//   final scaffoldKey = GlobalKey<ScaffoldState>();
-//   @override
-//   void initState() {
-//     super.initState();
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ProgressHUD(
-//       child: _uiSetup(context),
-//       inAsyncCall: isApiCallProcess,
-//       opacity: 0.3,
-//     );
-//   }
-
-//   Widget _uiSetup(BuildContext context) {
-//     return Scaffold(
-//       key: scaffoldKey,
-//       backgroundColor: Theme.of(context).accentColor,
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: <Widget>[
-//             Stack(
-//               children: <Widget>[
-//                 Container(
-//                   width: double.infinity,
-//                   padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-//                   margin: EdgeInsets.symmetric(vertical: 85, horizontal: 20),
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(20),
-//                     color: Theme.of(context).primaryColor,
-//                     boxShadow: [
-//                       BoxShadow(
-//                           color: Theme.of(context).hintColor.withOpacity(0.2),
-//                           offset: Offset(0, 10),
-//                           blurRadius: 20)
-//                     ],
-//                   ),
-//                   child: Form(
-//                     key: globalFormKey,
-//                     child: Column(
-//                       children: <Widget>[
-//                         SizedBox(height: 25),
-//                         Text(
-//                           "Login",
-//                           style: Theme.of(context).textTheme.headline2,
-//                         ),
-//                         SizedBox(height: 20),
-//                         new TextFormField(
-//                           keyboardType: TextInputType.emailAddress,
-
-//                           validator: (input) => !input.contains('@')
-//                               ? "Email Id should be valid"
-//                               : null,
-//                           decoration: new InputDecoration(
-//                             hintText: "Email Address",
-//                             enabledBorder: UnderlineInputBorder(
-//                                 borderSide: BorderSide(
-//                                     color: Theme.of(context)
-//                                         .accentColor
-//                                         .withOpacity(0.2))),
-//                             focusedBorder: UnderlineInputBorder(
-//                                 borderSide: BorderSide(
-//                                     color: Theme.of(context).accentColor)),
-//                             prefixIcon: Icon(
-//                               Icons.email,
-//                               color: Theme.of(context).accentColor,
-//                             ),
-//                           ),
-//                         ),
-//                         SizedBox(height: 20),
-//                         new TextFormField(
-//                           style:
-//                           TextStyle(color: Theme.of(context).accentColor),
-//                           keyboardType: TextInputType.text,
-//                           onSaved: (input) =>
-
-//                           validator: (input) => input.length < 3
-//                               ? "Password should be more than 3 characters"
-//                               : null,
-//                           obscureText: hidePassword,
-//                           decoration: new InputDecoration(
-//                             hintText: "Password",
-//                             enabledBorder: UnderlineInputBorder(
-//                                 borderSide: BorderSide(
-//                                     color: Theme.of(context)
-//                                         .accentColor
-//                                         .withOpacity(0.2))),
-//                             focusedBorder: UnderlineInputBorder(
-//                                 borderSide: BorderSide(
-//                                     color: Theme.of(context).accentColor)),
-//                             prefixIcon: Icon(
-//                               Icons.lock,
-//                               color: Theme.of(context).accentColor,
-//                             ),
-//                             suffixIcon: IconButton(
-//                               onPressed: () {
-//                                 setState(() {
-//                                   hidePassword = !hidePassword;
-//                                 });
-//                               },
-//                               color: Theme.of(context)
-//                                   .accentColor
-//                                   .withOpacity(0.4),
-//                               icon: Icon(hidePassword
-//                                   ? Icons.visibility_off
-//                                   : Icons.visibility),
-//                             ),
-//                           ),
-//                         ),
-//                         SizedBox(height: 30),
-//                         FlatButton(
-//                           padding: EdgeInsets.symmetric(
-//                               vertical: 12, horizontal: 80),
-//                           onPressed: () {
-//                             if (validateAndSave()) {
-//                               print(loginRequestModel.toJson());
-
-//                               setState(() {
-//                                 isApiCallProcess = true;
-//                               });
-
-//                               APIService apiService = new APIService();
-//                               apiService.login(loginRequestModel).then((value) {
-//                                 if (value != null) {
-//                                   setState(() {
-//                                     isApiCallProcess = false;
-//                                   });
-
-//                                   if (value.token.isNotEmpty) {
-//                                     final snackBar = SnackBar(
-//                                         content: Text("Login Successful"));
-//                                     scaffoldKey.currentState
-//                                         .showSnackBar(snackBar);
-//                                   } else {
-//                                     final snackBar =
-//                                     SnackBar(content: Text(value.error));
-//                                     scaffoldKey.currentState
-//                                         .showSnackBar(snackBar);
-//                                   }
-//                                 }
-//                               });
-//                             }
-//                           },
-//                           child: Text(
-//                             "Login",
-//                             style: TextStyle(color: Colors.white),
-//                           ),
-//                           color: Theme.of(context).accentColor,
-//                           shape: StadiumBorder(),
-//                         ),
-//                         SizedBox(height: 15),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   bool validateAndSave() {
-//     final form = globalFormKey.currentState;
-//     if (form.validate()) {
-//       form.save();
-//       return true;
-//     }
-//     return false;
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'App-Name',
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 30,
+                fontFamily: 'f'),
+          ),
+          centerTitle: true,
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListView(
+              children: <Widget>[
+                // Container(
+                //     alignment: Alignment.center,
+                //     padding: const EdgeInsets.all(10),
+                //     child: const Text(
+                //       'Yoo',
+                //       style: TextStyle(
+                //           color: Colors.blue,
+                //           fontWeight: FontWeight.w500,
+                //           fontSize: 30),
+                //     )),
+                Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'f',
+                      ),
+                    )),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'User Name',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    //forgot password screen
+                  },
+                  child: const Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                      fontFamily: 'f',
+                    ),
+                  ),
+                ),
+                Container(
+                    height: 50,
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: 'f',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      onPressed: () {
+                        print(nameController.text);
+                        print(passwordController.text);
+                      },
+                    )),
+                Row(
+                  children: <Widget>[
+                    const Text('Does not have account?'),
+                    TextButton(
+                      child: const Text(
+                        'Sign in',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'f',
+                        ),
+                      ),
+                      onPressed: () {
+                        //signup screen
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+              ],
+            )));
+  }
+}
