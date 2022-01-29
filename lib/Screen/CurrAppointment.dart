@@ -3,6 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:lactose_project/Screen/Feedback.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class CurrAppointment extends StatefulWidget {
   const CurrAppointment({Key? key}) : super(key: key);
@@ -93,6 +100,14 @@ class _CurrAppointmentState extends State<CurrAppointment> {
               size: 30,
             ),
             onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
               // do something
             },
           )
@@ -135,7 +150,16 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               shape: RoundedRectangleBorder(
@@ -150,7 +174,16 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -161,7 +194,16 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -173,6 +215,14 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
                 Navigator.pop(context);
               },
             ),
@@ -185,7 +235,16 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -197,6 +256,14 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -211,6 +278,14 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
