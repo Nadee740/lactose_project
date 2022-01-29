@@ -1,68 +1,27 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
-import 'package:timelines/timelines.dart';
-import 'package:http/http.dart' as http;
-class TestReport extends StatefulWidget {
-  const TestReport({Key? key}) : super(key: key);
+
+class FeedbackPage extends StatefulWidget {
+  const FeedbackPage({Key? key}) : super(key: key);
 
   @override
-  State<TestReport> createState() => _TestReportState();
+  _FeedbackPageState createState() => _FeedbackPageState();
 }
 
-class _TestReportState extends State<TestReport> {
-  Map Appointments = Map<String, dynamic>();
-  bool loading = false;
-  Future<void> getDataFromApi() async {
-    final storage = new FlutterSecureStorage();
-
-    var url = "https://lactose-backend.herokuapp.com/appointments/me";
-    var token = await storage.read(key: "jwtToken");
-
-    var res = await http.get(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWYzYjMzMDk4ZGMzZGEwNThhNGFiM2UiLCJpYXQiOjE2NDMzNjEwNzN9.r9L2BWz3H6hI6DYUpqQzXWj69RAJ9DkgqgHz3xm6y1o'
-      },
-    );
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
-    var responsebody =json.decode(res.body);
-
-    print(responsebody);
-    setState(() {
-      Appointments = {
-        'res': responsebody,
-
-      };
-
-      loading = false;
-    });
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    setState(() {
-      loading=true;
-    });
-    getDataFromApi();
-  }
+class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "MedCo ",
+          "MedCo",
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'f',
@@ -80,7 +39,7 @@ class _TestReportState extends State<TestReport> {
               size: 30,
             ),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) {
@@ -88,7 +47,6 @@ class _TestReportState extends State<TestReport> {
                   },
                 ),
               );
-              // do something
             },
           )
         ],
@@ -117,6 +75,7 @@ class _TestReportState extends State<TestReport> {
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -131,7 +90,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -139,6 +98,8 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -155,7 +116,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -163,6 +124,8 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -175,7 +138,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -183,6 +146,8 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -195,7 +160,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -203,6 +168,8 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
                 Navigator.pop(context);
               },
             ),
@@ -216,7 +183,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -224,6 +191,8 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -236,7 +205,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -250,7 +219,7 @@ class _TestReportState extends State<TestReport> {
             ),
             ListTile(
               title: const Text(
-                'Send Feedback',
+                'Feedback',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'f',
@@ -258,7 +227,7 @@ class _TestReportState extends State<TestReport> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -266,109 +235,117 @@ class _TestReportState extends State<TestReport> {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
           ],
         ),
       ),
-      body:loading?Container(
-        height: MediaQuery.of(context).size.height,
-        child: Center(
-          child: CircularProgressIndicator(
-            backgroundColor: Colors.cyan,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xff96f47e), Color(0xff17edf1)],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
           ),
         ),
-      ):ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return new Stack(
-            children: <Widget>[
-              new Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: new Card(
-                  margin: new EdgeInsets.all(20.0),
-                  child: new Container(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        Text(
-                          Appointments['res'][index]['date'],
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontFamily: 'f',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green,
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.002,
-                        ),
-                        Text(
-                          Appointments['res'][index]['createdAt'],
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontFamily: 'f',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                            left: 30,
-                          ),
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          child: Text(
-                            index/2==0?"peedi pani aarnn":index/3==0?"corona aarnn":"omicronaaanoon doubt ind",
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontFamily: 'f',
-                            ),
-                          ),
-                        ),
-                      ],
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1.2,
+            height: MediaQuery.of(context).size.height / 1.5,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: const Offset(
+                    5.0,
+                    5.0,
+                  ),
+                  blurRadius: 10.0,
+                  spreadRadius: 2.0,
+                ),
+                BoxShadow(
+                  color: Colors.white,
+                  offset: const Offset(0.0, 0.0),
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                ),
+              ],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: 160,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: EdgeInsets.only(
+                    top: 40,
+                  ),
+                  child: Text(
+                    'Send us your Feedback!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'f',
+                      fontSize: 40,
                     ),
-                    width: double.infinity,
-                    height: 200,
-                    color: Color(0xffA0D0E7FF),
                   ),
                 ),
-              ),
-              new Positioned(
-                top: 0.0,
-                bottom: 0.0,
-                left: 35.0,
-                child: new Container(
-                  height: double.infinity,
-                  width: 1.0,
-                  color: Colors.black,
-                ),
-              ),
-              new Positioned(
-                top: 100.0,
-                left: 15.0,
-                child: new Container(
-                  height: 40.0,
-                  width: 40.0,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black,
-                  ),
-                  child: Container(
-                    margin: new EdgeInsets.all(5.0),
-                    height: 30.0,
-                    width: 30.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle, color: Color(0xff17edf1)),
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Icon(
+                    Icons.thumb_up_rounded,
+                    size: 90,
+                    color: Color.fromARGB(255, 238, 220, 57),
                   ),
                 ),
-              )
-            ],
-          );
-        },
-        itemCount: Appointments['res'].length,
+                Container(
+                  height: 125,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffA0D0E7FF),
+                      filled: true,
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      labelText: 'How was your experience?',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'f',
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  width: 150,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff17edf1),
+                    ),
+                    child: const Text(
+                      'Send',
+                      style: TextStyle(
+                        fontFamily: 'f',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    onPressed: () {
+                      //send button
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

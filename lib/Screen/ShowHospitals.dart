@@ -23,7 +23,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
   List<dynamic> FilteredHospitals = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "http://10.0.2.2:8000/hospitals";
+    var url = "https://lactose-backend.herokuapp.com/hospitals";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody['data'][0]['name']);
@@ -49,7 +49,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App-Name"),
+        title: Text("MedCo"),
         centerTitle: true,
         // leading: Icon(
         //   Icons.account_circle_rounded,
@@ -87,7 +87,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
               ),
               child: Center(
                 child: Text(
-                  'App-Name',
+                  'MedCo',
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
@@ -106,7 +106,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -126,7 +126,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -148,7 +148,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -170,7 +170,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -192,7 +192,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -214,7 +214,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {

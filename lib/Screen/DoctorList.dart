@@ -12,6 +12,7 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 
 class DoctorList extends StatefulWidget {
   const DoctorList({Key? key,required this.spec}) : super(key: key);
@@ -28,7 +29,7 @@ class _DoctorListState extends State<DoctorList> {
   List<dynamic> FilteredDoctors = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "http://10.0.2.2:8000/doctors?specification=${widget.spec}";
+    var url = "https://lactose-backend.herokuapp.com/doctors?specification=${widget.spec}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody['data'][0]['name']);
@@ -110,7 +111,7 @@ class _DoctorListState extends State<DoctorList> {
               ),
               child: Center(
                 child: Text(
-                  'App-Name',
+                  'MedCo',
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
@@ -259,6 +260,14 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },

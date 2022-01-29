@@ -24,7 +24,7 @@ class _SignupPageState extends State<SignupPage> {
   Future<void> SubmitSignup() async {
 
      var res=await http.post(
-      Uri.parse('http://10.0.2.2:8000/users'),
+      Uri.parse('https://lactose-backend.herokuapp.com/users'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -63,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'App-Name',
+            'MedCo',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
@@ -80,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
                 //   alignment: Alignment.center,
                 //   padding: const EdgeInsets.all(10),
                 //   child: const Text(
-                //     'App-Name',
+                //     'MedCo',
                 //     style: TextStyle(
                 //         color: Colors.black,
                 //         fontWeight: FontWeight.w500,
@@ -198,23 +198,26 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                       onPressed: () {
-                        print('hy');
+
                         SubmitSignup();
                       },
                     )),
                 Row(
                   children: <Widget>[
-                    const Text('Does not have account?'),
+                    const Text('Already have an account?'),
                     TextButton(
                       child: const Text(
-                        'Sign in',
+                        'Login',
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'f',
                         ),
                       ),
                       onPressed: () {
-                        SubmitSignup();
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return Home();
+                            }));
                       },
                     )
                   ],

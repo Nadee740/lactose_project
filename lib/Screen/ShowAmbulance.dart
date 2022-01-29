@@ -23,7 +23,7 @@ class _ShowAmbulanceState extends State<ShowAmbulance> {
   List<dynamic> FilteredAmbulance = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "http://10.0.2.2:8000/ambulance";
+    var url = "https://lactose-backend.herokuapp.com/ambulance";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
 
@@ -50,7 +50,7 @@ class _ShowAmbulanceState extends State<ShowAmbulance> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "App-Name",
+          "MedCo",
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'f',
@@ -94,7 +94,7 @@ class _ShowAmbulanceState extends State<ShowAmbulance> {
               ),
               child: Center(
                 child: Text(
-                  'App-Name',
+                  'MedCo',
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,

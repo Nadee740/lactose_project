@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:lactose_project/Screen/BookAppointment.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -15,12 +17,14 @@ import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 import 'package:lactose_project/Screen/signup.dart';
 import 'package:http/http.dart' as http;
 
-void main() async {
+bool loggedin=false;
+Future<void>  main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+ checkLogin();
   runApp(const MyApp());
 }
 
@@ -31,7 +35,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: Home(),
+      debugShowCheckedModeBanner: false,
+
+
+      home:loggedin?Home():LoginPage(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -42,11 +49,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-Future<bool> checkLogin() async {
+void checkLogin() async {
   final storage = new FlutterSecureStorage();
 
-  var url = "http://10.0.2.2:8000/users/me";
+  var url = "https://lactose-backend.herokuapp.com/users/me";
   var token = await storage.read(key: "jwtToken");
 
   var res = await http.get(
@@ -58,6 +64,7 @@ Future<bool> checkLogin() async {
   );
   // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
   var responsebody = json.decode(res.body);
-  print(responsebody);
-  return responsebody['error'] ? false : true;
+
+  responsebody['status']=="failed" ? loggedin=false: loggedin=true;
+  return;
 }

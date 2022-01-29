@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class ShowsLabs extends StatefulWidget {
   const ShowsLabs({Key? key}) : super(key: key);
@@ -111,7 +113,16 @@ class _ShowsLabsState extends State<ShowsLabs> {
                     "Appointment",
                     style: TextStyle(color: Colors.white, fontFamily: 'A'),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return CurrAppointment();
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(
@@ -126,7 +137,16 @@ class _ShowsLabsState extends State<ShowsLabs> {
                     "Report",
                     style: TextStyle(color: Colors.white, fontFamily: 'A'),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return TestReport();
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

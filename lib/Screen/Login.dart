@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,46 +15,41 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isloading=false;
+  bool isloading = false;
   final storage = new FlutterSecureStorage();
   Future<void> SubmitLogin() async {
-
-    var res=await http.post(
-      Uri.parse('http://10.0.2.2:8000/users/login'),
+    var res = await http.post(
+      Uri.parse('https://lactose-backend.herokuapp.com/users/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-
-        'email':emailController.text,
-        'password':passwordController.text,
-
+        'email': emailController.text,
+        'password': passwordController.text,
       }),
     );
 
-    var responsebody=json.decode(res.body);
+    var responsebody = json.decode(res.body);
     print(responsebody);
-    if(responsebody['status'].toString()=='ok')
-    { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
+    if (responsebody['status'].toString() == 'ok') {
+      await storage.write(
+          key: "jwtToken", value: responsebody['token'].toString());
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-          return Home();
-        }));
-
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Home();
+      }));
     }
-    // print(responsebody['data'][0]['name']);
 
 
-    setState(() {
-
-    });
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'App-Name',
+            'MedCo',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
@@ -80,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(10),
                     child: const Text(
-                      'Sign Up',
+                      'Login',
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'f',
@@ -108,35 +104,34 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-
                 TextButton(
                   onPressed: () {
                     //forgot password screen
                   },
                   child: const Text(
-                    'Forgot Password',
+                    '',
                     style: TextStyle(
                       fontFamily: 'f',
                     ),
                   ),
                 ),
                 Container(
-                    height: 50,
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: ElevatedButton(
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          fontFamily: 'f',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontFamily: 'f',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
-                      onPressed: () {
-SubmitLogin();
-
-                      },
-                    )),
+                    ),
+                    onPressed: () {
+                      SubmitLogin();
+                    },
+                  ),
+                ),
                 Row(
                   children: <Widget>[
                     const Text('Does not have account?'),
@@ -149,7 +144,10 @@ SubmitLogin();
                         ),
                       ),
                       onPressed: () {
-                        //signup screen
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return SignupPage();
+                            }));
                       },
                     )
                   ],

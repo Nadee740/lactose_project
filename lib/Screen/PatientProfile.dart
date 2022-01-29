@@ -22,7 +22,7 @@ class _PatientProfileState extends State<PatientProfile> {
   Future<void> getDataFromApi() async {
     final storage = new FlutterSecureStorage();
 
-    var url = "http://10.0.2.2:8000/users/me";
+    var url = "https://lactose-backend.herokuapp.com/users/me";
     var token = await storage.read(key: "jwtToken");
 
     var res = await http.get(
@@ -30,7 +30,7 @@ class _PatientProfileState extends State<PatientProfile> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0'
+            'Bearer ${token}'
       },
     );
     // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
@@ -125,7 +125,7 @@ class _PatientProfileState extends State<PatientProfile> {
                           ),
                         ),
                         SizedBox(
-                          height: 60,
+                          height: 3,
                         ),
                         Text(
                           Data['name'],
@@ -143,7 +143,7 @@ class _PatientProfileState extends State<PatientProfile> {
                         Text(
                           "age:${Data['age']}",
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 12.0,
                             color: Colors.black45,
                             letterSpacing: 2.0,
                             fontWeight: FontWeight.w300,
@@ -156,9 +156,9 @@ class _PatientProfileState extends State<PatientProfile> {
                         Text(
                           Data['place'],
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 12.0,
                             color: Colors.black45,
-                            letterSpacing: 2.0,
+                            letterSpacing: 1.0,
                             fontWeight: FontWeight.w300,
                             fontFamily: 'f',
                           ),
@@ -169,7 +169,7 @@ class _PatientProfileState extends State<PatientProfile> {
                         Text(
                           "${Data['phone']} || ${Data['email']}",
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 12.0,
                             color: Colors.black45,
                             letterSpacing: 2.0,
                             fontWeight: FontWeight.w300,

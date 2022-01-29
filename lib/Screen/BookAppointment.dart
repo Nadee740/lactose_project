@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+// MedCo
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -29,7 +29,7 @@ class _BookAppointmentState extends State<BookAppointment> {
     TimeOfDay(hour: 15, minute: 20),
   );
   Future<void> SubmitAppointmnet()async{
-    var url = "http://10.0.2.2:8000/create-appointment";
+    var url = "https://lactose-backend.herokuapp.com/create-appointment";
     var res=await http.post(
       Uri.parse(url),
       headers: <String, String>{
@@ -55,14 +55,14 @@ class _BookAppointmentState extends State<BookAppointment> {
 
   Future<void> getDataFromApi() async {
 
-    var url = "http://10.0.2.2:8000/doctor/${widget.docid}";
+    var url = "https://lactose-backend.herokuapp.com/doctor/${widget.docid}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody);
 
     final storage = new FlutterSecureStorage();
 
-    var url1 = "http://10.0.2.2:8000/users/me";
+    var url1 = "https://lactose-backend.herokuapp.com/users/me";
     var token = await storage.read(key: "jwtToken");
 
     var response = await http.get(
@@ -70,9 +70,10 @@ class _BookAppointmentState extends State<BookAppointment> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0'
+        'Bearer ${token}'
       },
     );
+
     // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
     var responsebodyuser = json.decode(response.body);
 
@@ -98,7 +99,7 @@ class _BookAppointmentState extends State<BookAppointment> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "App-Name",
+          "MedCo",
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'f',
@@ -141,7 +142,7 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
               child: Center(
                 child: Text(
-                  'App-Name',
+                  'MedCo',
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
