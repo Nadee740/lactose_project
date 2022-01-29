@@ -11,6 +11,7 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/signup.dart';
 import 'package:http/http.dart' as http;
 void main() async{
@@ -25,8 +26,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+
+
+      home: CurrAppointment(),
+
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
