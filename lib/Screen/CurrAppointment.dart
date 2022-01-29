@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class CurrAppointment extends StatelessWidget {
   const CurrAppointment({Key? key}) : super(key: key);
@@ -26,6 +32,14 @@ class CurrAppointment extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
               // do something
             },
           )
@@ -68,7 +82,16 @@ class CurrAppointment extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               shape: RoundedRectangleBorder(
@@ -83,7 +106,16 @@ class CurrAppointment extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -94,7 +126,16 @@ class CurrAppointment extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -106,7 +147,14 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -118,7 +166,16 @@ class CurrAppointment extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -130,6 +187,14 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },

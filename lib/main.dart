@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CurrAppointment(),
+      home: Home(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),

@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'dart:ui';
+
+import 'package:lactose_project/Screen/DoctorList.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -36,7 +44,14 @@ class Home extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
-              // do something
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
             },
           )
         ],
@@ -80,6 +95,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -98,6 +121,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -112,6 +143,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -126,6 +165,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
                 Navigator.pop(context);
@@ -141,6 +188,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -155,6 +210,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -228,7 +291,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      debugPrint('Card tapped.');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                     },
                     child: const SizedBox(
                       width: double.infinity,
@@ -259,6 +329,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                       debugPrint('Card tapped.');
                     },
                     child: const SizedBox(
@@ -290,6 +368,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                       debugPrint('Card tapped.');
                     },
                     child: const SizedBox(
@@ -321,6 +407,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                       debugPrint('Card tapped.');
                     },
                     child: const SizedBox(
@@ -351,6 +445,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                       debugPrint('Card tapped.');
                     },
                     child: const SizedBox(
@@ -382,6 +484,14 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList();
+                          },
+                        ),
+                      );
                       debugPrint('Card tapped.');
                     },
                     child: const SizedBox(

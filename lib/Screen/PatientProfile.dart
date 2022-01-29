@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class PatientProfile extends StatelessWidget {
   const PatientProfile({Key? key}) : super(key: key);
@@ -21,20 +24,47 @@ class PatientProfile extends StatelessWidget {
                     image: DecorationImage(
                         image: NetworkImage("add you image URL here "),
                         fit: BoxFit.cover)),
-                child: Container(
-                  width: double.infinity,
-                  height: 170,
-                  child: Container(
-                    alignment: Alignment(0.0, 2.5),
-                    child: CircleAvatar(
-                      child: Icon(
-                        Icons.account_circle_sharp,
-                        size: 130,
-                      ),
-                      backgroundColor: Color(0xff1182d0),
-                      radius: 65.0,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 30,
                     ),
-                  ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: IconButton(
+                        alignment: Alignment.topRight,
+                        icon: Icon(
+                          Icons.home,
+                          color: Colors.black,
+                          size: 50,
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return Home();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: Container(
+                        alignment: Alignment(0.0, 2.5),
+                        child: CircleAvatar(
+                          child: Icon(
+                            Icons.account_circle_sharp,
+                            size: 130,
+                          ),
+                          backgroundColor: Color(0xff1182d0),
+                          radius: 65.0,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
@@ -114,7 +144,16 @@ class PatientProfile extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return CurrAppointment();
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(
@@ -138,7 +177,16 @@ class PatientProfile extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return TestReport();
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

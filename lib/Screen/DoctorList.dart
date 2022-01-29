@@ -2,6 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
 
 class DoctorList extends StatelessWidget {
   const DoctorList({Key? key}) : super(key: key);
@@ -32,6 +39,14 @@ class DoctorList extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return PatientProfile();
+                    },
+                  ),
+                );
                 // do something
               },
             ),
@@ -76,8 +91,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -90,6 +111,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -104,6 +133,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -118,6 +155,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -132,6 +177,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -146,6 +199,14 @@ class DoctorList extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
