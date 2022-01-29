@@ -337,7 +337,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 showAlertDialog(BuildContext context) {
   // set up the buttons
   Widget cancelButton = FlatButton(
-    child: Text("PROCEED"),
+    child: Text("Cancel",style: TextStyle(fontFamily: 'f',fontSize: 21),),
     onPressed: () {
       Navigator.pushReplacement(context, PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 1),
@@ -357,8 +357,8 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Appointment Confirmed!"),
-    content: Text("Booking ID:435\nDoctor:Name\nDate : Time"),
+    title: Text("Appointment Confirmed!",style: TextStyle(fontFamily: 'f',fontSize: 21),),
+    content: Text("Booking ID:435\nDoctor:Name\nDate : Time",style: TextStyle(fontFamily: 'f',fontSize: 17),),
     actions: [
       cancelButton,
 
