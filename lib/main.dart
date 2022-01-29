@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lactose_project/Screen/CurrAppointment.dart';
+// import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/Login.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: CurrAppointment(),
+      home: ShowHospitals(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(
