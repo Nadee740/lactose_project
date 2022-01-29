@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 import 'package:timelines/timelines.dart';
 
 class TestReport extends StatelessWidget {
@@ -145,6 +149,14 @@ class TestReport extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
                 Navigator.pop(context);
               },
             ),
@@ -157,7 +169,16 @@ class TestReport extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text(
@@ -169,6 +190,14 @@ class TestReport extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -182,7 +211,16 @@ class TestReport extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),

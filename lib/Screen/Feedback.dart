@@ -219,7 +219,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             ListTile(
               title: const Text(
-                'Send FeedbackPage',
+                'Feedback',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'f',
@@ -283,7 +283,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     top: 40,
                   ),
                   child: Text(
-                    'Send us your FeedbackPage!',
+                    'Send us your Feedback!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'f',
@@ -337,7 +337,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         color: Colors.black,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      //send button
+                    },
                   ),
                 ),
               ],
