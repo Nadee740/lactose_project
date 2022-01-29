@@ -1,17 +1,98 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:time_range/time_range.dart';
 import 'package:alert_dialog/alert_dialog.dart';
+import 'package:http/http.dart' as http;
 class BookAppointment extends StatefulWidget {
-  const BookAppointment({Key? key}) : super(key: key);
-
+  const BookAppointment({Key? key,required this.docid}) : super(key: key);
+  final String docid;
   @override
   State<BookAppointment> createState() => _BookAppointmentState();
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+  bool loading=false;
+  List<dynamic> Doctors = <dynamic>[];
+  List<dynamic> FilteredDoctors = <dynamic>[];
+  Map UserData=Map <String,dynamic>();
+  Map Doctordata=Map <String,dynamic>();
+   String date="";
+   String time="";
+
+  final _defaultTimeRange = TimeRangeResult(
+    TimeOfDay(hour: 14, minute: 50),
+    TimeOfDay(hour: 15, minute: 20),
+  );
+  Future<void> SubmitAppointmnet()async{
+    var url = "http://10.0.2.2:8000/create-appointment";
+    var res=await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+       "patientid":UserData['_id'],
+        "date":date,
+        "doctorId":widget.docid,
+        "hospitalid":Doctordata['hospital_id'],
+        "desc":"create cheyd pooi adhaata"
+
+      }),
+    );
+    var responsebody=json.decode(res.body);
+    print(responsebody);
+    if(responsebody['status']=="ok")
+      {
+        showAlertDialog(context,Doctordata['name'],date);
+      }
+
+  }
+
+  Future<void> getDataFromApi() async {
+
+    var url = "http://10.0.2.2:8000/doctor/${widget.docid}";
+    var res = await http.get(Uri.parse(url));
+    var responsebody = json.decode(res.body);
+    print(responsebody);
+
+    final storage = new FlutterSecureStorage();
+
+    var url1 = "http://10.0.2.2:8000/users/me";
+    var token = await storage.read(key: "jwtToken");
+
+    var response = await http.get(
+      Uri.parse(url1),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0'
+      },
+    );
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
+    var responsebodyuser = json.decode(response.body);
+
+    setState(() {
+      Doctordata= responsebody['data'];
+      UserData=responsebodyuser['data'];
+      loading = false;
+    });
+  }
+  TimeRangeResult? _timeRange;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _timeRange = _defaultTimeRange;
+    setState(() {
+      loading=true;
+    });
+    getDataFromApi();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,7 +256,14 @@ class _BookAppointmentState extends State<BookAppointment> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body:loading?Container(
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.cyan,
+          ),
+        ),
+      ):SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 1250,
@@ -197,20 +285,20 @@ class _BookAppointmentState extends State<BookAppointment> {
                         radius: 65.0,
                       ),
                     ),
-                    Text("Dr.XXXXX",style:TextStyle(color: Colors.black,fontSize: 40,),),
-                    Text("Dentist, Hospital",style:TextStyle(color: Colors.black,fontSize: 25,),),
+                    Text(Doctordata['name'],style:TextStyle(color: Colors.black,fontSize: 40,),),
+                    Text("${Doctordata['specification']} ",style:TextStyle(color: Colors.black,fontSize: 22,),),
                     Padding(padding: const EdgeInsets.only(top: 15),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          child: Center(child: Text("Patients:500+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
+                          child: Center(child: Text(Doctordata['qualification'],style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
                           color: Color(0xff4fe5a8),
                           height: 20,
                           width: MediaQuery.of(context).size.width/3.5,
                         ),
                         Container(
-                          child: Center(child: Text("Experience:10 Yrs+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
+                          child: Center(child: Text("Experience:${Doctordata['exprnc']} Yrs+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
                           color: Color(0xff4fe5a8),
                           height: 20,
                           width: MediaQuery.of(context).size.width/3.3,
@@ -236,7 +324,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                     Padding(padding: const EdgeInsets.only(top: 20),),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(" and more recently withthe release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem ",style: TextStyle(fontSize: 10),),
+                      child: Text(Doctordata['qualification']+" me d pwolieeeyyy",style: TextStyle(fontSize: 10),),
                     ),
                   ],
                 ),
@@ -259,11 +347,13 @@ class _BookAppointmentState extends State<BookAppointment> {
                           lastDay: DateTime.utc(2030, 3, 14),
                           focusedDay: DateTime.now(),
                           selectedDayPredicate: (day) {
-                            print(day);
+
                             return true;
                           },
                           onDaySelected: (selectedDay, focusedDay) {
+
                             setState(() {
+                              date=selectedDay.day.toString()+"-"+selectedDay.month.toString()+"-"+selectedDay.year.toString();
                             });
                           },
                         ),
@@ -292,7 +382,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                               lastTime: TimeOfDay(hour: 16, minute: 00),
                               timeStep: 30,
                               timeBlock: 30,
-                              onRangeCompleted: (range) => setState(() => print(range)),
+                              onRangeCompleted: (range) => setState(() => _timeRange = range),
                             ),
                           ],
                         ),
@@ -305,7 +395,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                           color:Color(0xff1d3d7d),
                           child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
                           onPressed: () {
-                            showAlertDialog(context);
+                           SubmitAppointmnet();
+                            // showAlertDialog(context);
                           },
                         ),
                       ),
@@ -323,7 +414,7 @@ class _BookAppointmentState extends State<BookAppointment> {
     );
   }
 }
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context,String name,String date) {
   // set up the buttons
   Widget cancelButton = FlatButton(
     child: Text("PROCEED"),
@@ -339,7 +430,7 @@ showAlertDialog(BuildContext context) {
           },
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secAnimation) {
-            return BookAppointment();
+            return Home();
           }));
     },
   );
@@ -347,7 +438,7 @@ showAlertDialog(BuildContext context) {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Appointment Confirmed!"),
-    content: Text("Booking ID:435\nDoctor:Name\nDate : Time"),
+    content: Text("Doctor:${name}\nDate : ${date}"),
     actions: [
       cancelButton,
 

@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) {
@@ -95,7 +95,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -121,7 +121,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -143,7 +143,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -165,7 +165,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -188,7 +188,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -210,7 +210,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -291,11 +291,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec:"Psychiatrist" ,);
                           },
                         ),
                       );
@@ -329,11 +329,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec:"Neurologist" ,);
                           },
                         ),
                       );
@@ -368,11 +368,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec:"Pediatrician" ,);
                           },
                         ),
                       );
@@ -407,11 +407,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec: "Cardiologist",);
                           },
                         ),
                       );
@@ -430,6 +430,7 @@ class Home extends StatelessWidget {
                       )),
                     ),
                   ),
+                  
                 ),
               ),
               Card(
@@ -445,11 +446,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec: "Gynaecologist",);
                           },
                         ),
                       );
@@ -484,11 +485,11 @@ class Home extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList();
+                            return DoctorList(spec: "Dentist",);
                           },
                         ),
                       );

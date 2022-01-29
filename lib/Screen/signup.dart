@@ -40,8 +40,8 @@ class _SignupPageState extends State<SignupPage> {
     );
 
      var responsebody=json.decode(res.body);
-     print("hyyy");
-     print(responsebody['status']);
+
+
      if(responsebody['status'].toString()=='ok')
        { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
 

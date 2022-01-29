@@ -1,11 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:lactose_project/Screen/BookAppointment.dart';
-=======
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
->>>>>>> cdce593553c984b4c5a3bc69125c0c60bba85013
+
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/DoctorList.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -31,16 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
-      debugShowCheckedModeBanner: false,
 
-
-      home: BookAppointment(),
-
-
-=======
       home: Home(),
->>>>>>> cdce593553c984b4c5a3bc69125c0c60bba85013
+
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
@@ -49,6 +41,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 Future<bool> checkLogin() async {
   final storage = new FlutterSecureStorage();

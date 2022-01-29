@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
+import 'package:lactose_project/Screen/BookAppointment.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
@@ -13,20 +14,21 @@ import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 
 class DoctorList extends StatefulWidget {
-  const DoctorList({Key? key}) : super(key: key);
-
+  const DoctorList({Key? key,required this.spec}) : super(key: key);
+   final String spec;
   @override
   State<DoctorList> createState() => _DoctorListState();
 }
 
 class _DoctorListState extends State<DoctorList> {
+
   bool loading = false;
 
   List<dynamic> Doctors = <dynamic>[];
   List<dynamic> FilteredDoctors = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "http://10.0.2.2:8000/doctors";
+    var url = "http://10.0.2.2:8000/doctors?specification=${widget.spec}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody['data'][0]['name']);
@@ -50,6 +52,7 @@ class _DoctorListState extends State<DoctorList> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.spec);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -74,7 +77,7 @@ class _DoctorListState extends State<DoctorList> {
                 size: 30,
               ),
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -126,7 +129,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -146,7 +149,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -168,7 +171,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -190,7 +193,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -212,7 +215,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -234,7 +237,7 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
@@ -422,7 +425,16 @@ class _DoctorListState extends State<DoctorList> {
                                               fontSize: 20,
                                             ),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (BuildContext context) {
+                                                  return BookAppointment(docid: FilteredDoctors[i]['_id']);
+                                                },
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ],
