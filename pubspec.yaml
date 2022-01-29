@@ -35,11 +35,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   flutter_rating_bar: ^4.0.0
-<<<<<<< HEAD
   timelines: ^0.1.0
-=======
   url_launcher: ^6.0.18
->>>>>>> 46ba8915806b362f1a46987afb4255d008297727
+  table_calendar: ^3.0.3
+  time_range: ^1.0.2
+  alert_dialog: ^1.0.0
+
+
 
 dev_dependencies:
   flutter_test:
