@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:timelines/timelines.dart';
+
 class TestReport extends StatelessWidget {
   const TestReport({Key? key}) : super(key: key);
 
@@ -9,7 +13,12 @@ class TestReport extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "App-Name ",
-          style: TextStyle(fontSize: 30, fontFamily: 'f', color: Colors.black),
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'f',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
@@ -18,8 +27,17 @@ class TestReport extends StatelessWidget {
             icon: Icon(
               Icons.person,
               color: Colors.black,
+              size: 30,
             ),
             onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
               // do something
             },
           )
@@ -63,7 +81,14 @@ class TestReport extends StatelessWidget {
                 ),
               ),
               onTap: () {
-
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -80,6 +105,14 @@ class TestReport extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -92,6 +125,14 @@ class TestReport extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -116,8 +157,7 @@ class TestReport extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text(
@@ -142,15 +182,12 @@ class TestReport extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              onTap: () {
-
-              },
+              onTap: () {},
             ),
           ],
         ),
       ),
-      body:
-      ListView.builder(
+      body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
           return new Stack(
             children: <Widget>[
@@ -161,18 +198,49 @@ class TestReport extends StatelessWidget {
                   child: new Container(
                     child: Column(
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
-                        Text("Date",style:TextStyle(fontSize: 20),),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
-                        Text("Time",style: TextStyle(fontSize: 17),),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.07,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Text(
+                          "Date",
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontFamily: 'f',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.002,
+                        ),
+                        Text(
+                          "Time",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'f',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
                         Container(
-                            width:MediaQuery.of(context).size.width * 0.65 ,
-                            child: Text("more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",style: TextStyle(fontSize: 17),)),
+                          padding: EdgeInsets.only(
+                            left: 30,
+                          ),
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          child: Text(
+                            "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'f',
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     width: double.infinity,
-                    height: 200.0,
+                    height: 200,
                     color: Color(0xffA0D0E7FF),
                   ),
                 ),
@@ -184,7 +252,7 @@ class TestReport extends StatelessWidget {
                 child: new Container(
                   height: double.infinity,
                   width: 1.0,
-                  color: Colors.blue,
+                  color: Colors.black,
                 ),
               ),
               new Positioned(
@@ -195,18 +263,15 @@ class TestReport extends StatelessWidget {
                   width: 40.0,
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
-
                   child: Container(
                     margin: new EdgeInsets.all(5.0),
                     height: 30.0,
                     width: 30.0,
                     decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xff17edf1)),
+                        shape: BoxShape.circle, color: Color(0xff17edf1)),
                   ),
-
                 ),
               )
             ],

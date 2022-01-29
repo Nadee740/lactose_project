@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lactose_project/Screen/Home.dart';
@@ -19,9 +19,10 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController genderController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   List<dynamic> Signupresult=<dynamic>[];
+  final storage = new FlutterSecureStorage();
  bool isloading=false;
   Future<void> SubmitSignup() async {
-     print("hy");
+
      var res=await http.post(
       Uri.parse('http://10.0.2.2:8000/users'),
       headers: <String, String>{
@@ -41,8 +42,10 @@ class _SignupPageState extends State<SignupPage> {
      var responsebody=json.decode(res.body);
      print("hyyy");
      print(responsebody['status']);
-     if(responsebody['status'].toString()=='failed')
-       { Navigator.pushReplacement(context,
+     if(responsebody['status'].toString()=='ok')
+       { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
+
+         Navigator.pushReplacement(context,
            MaterialPageRoute(builder: (BuildContext context) {
              return Home();
            }));

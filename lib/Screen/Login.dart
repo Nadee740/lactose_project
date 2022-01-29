@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -15,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isloading=false;
+  final storage = new FlutterSecureStorage();
   Future<void> SubmitLogin() async {
 
     var res=await http.post(
@@ -33,7 +34,8 @@ class _LoginPageState extends State<LoginPage> {
     var responsebody=json.decode(res.body);
     print(responsebody);
     if(responsebody['status'].toString()=='ok')
-    { Navigator.pushReplacement(context,
+    { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
+      Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) {
           return Home();
         }));
