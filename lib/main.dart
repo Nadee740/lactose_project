@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
 
-      home: CurrAppointment(),
+      home: DoctorList(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(

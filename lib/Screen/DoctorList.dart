@@ -1,11 +1,45 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-class DoctorList extends StatelessWidget {
+import 'package:http/http.dart' as http;
+class DoctorList extends StatefulWidget {
   const DoctorList({Key? key}) : super(key: key);
 
+  @override
+  State<DoctorList> createState() => _DoctorListState();
+}
+
+class _DoctorListState extends State<DoctorList> {
+  bool loading=false;
+
+  List<dynamic> Doctors=<dynamic>[];
+  List<dynamic> FilteredDoctors=<dynamic>[];
+
+  Future<void> getDataFromApi() async {
+
+    var url = "http://10.0.2.2:8000/doctors";
+    var res = await http.get(Uri.parse(url));
+    var responsebody=json.decode(res.body);
+    print(responsebody['data'][0]['name']);
+
+
+    setState(() {
+      Doctors=responsebody['data'];
+      FilteredDoctors=responsebody['data'];
+      loading=false;
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      loading=true;
+    });
+    getDataFromApi();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,7 +201,7 @@ class DoctorList extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body:loading?Container(height: MediaQuery.of(context).size.height,child: Center(child: CircularProgressIndicator(backgroundColor: Colors.cyan,),),):SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -209,7 +243,8 @@ class DoctorList extends StatelessWidget {
                   ),
                 ),
               ),
-              Card(
+              for(int i=0;i<FilteredDoctors.length;i++)
+                     Card(
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -239,7 +274,7 @@ class DoctorList extends StatelessWidget {
                       ),
                       RatingBar.builder(
                         itemSize: 25,
-                        initialRating: 3,
+                        initialRating: i/2==0?3:i/3==0?2:4,
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -268,21 +303,21 @@ class DoctorList extends StatelessWidget {
                               ),
                               Center(
                                   child: Text(
-                                'DR.MOKNER WAND',
+                                FilteredDoctors[i]['name'].toString(),
                                 style: TextStyle(
                                   fontFamily: 'f',
                                   fontSize: 15,
                                 ),
                               )),
                               Text(
-                                "DENTISTS",
+                                FilteredDoctors[i]['job_position'].toString(),
                                 style: TextStyle(
                                   fontFamily: 'f',
                                   fontSize: 15,
                                 ),
                               ),
                               Text(
-                                "Hospital",
+                                FilteredDoctors[i]['specification'],
                                 style: TextStyle(
                                   fontFamily: 'f',
                                   fontSize: 15,
@@ -320,568 +355,9 @@ class DoctorList extends StatelessWidget {
                   ),
                 ),
               ),
-              Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Container(
-                          alignment: Alignment(0.0, 2.5),
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 130,
-                            ),
-                            backgroundColor: Color(0xff1182d0),
-                            radius: 65.0,
-                          ),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        itemSize: 25,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
-                        onTap: () {
-                          debugPrint('Card tapped.');
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                  child: Text(
-                                'DR.MOKNER WAND',
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              )),
-                              Text(
-                                "DENTISTS",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Hospital",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 300,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    //to set border radius to button
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  color: Color(0xff17edf1),
-                                  child: Text(
-                                    "Book Appointment",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Container(
-                          alignment: Alignment(0.0, 2.5),
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 130,
-                            ),
-                            backgroundColor: Color(0xff1182d0),
-                            radius: 65.0,
-                          ),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        itemSize: 25,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
-                        onTap: () {
-                          debugPrint('Card tapped.');
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Text(
-                                  'DR.MOKNER WAND',
-                                  style: TextStyle(
-                                    fontFamily: 'f',
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "DENTISTS",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Hospital",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 300,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    //to set border radius to button
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  color: Color(0xff17edf1),
-                                  child: Text(
-                                    "Book Appointment",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Container(
-                          alignment: Alignment(0.0, 2.5),
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 130,
-                            ),
-                            backgroundColor: Color(0xff1182d0),
-                            radius: 65.0,
-                          ),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        itemSize: 25,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
-                        onTap: () {
-                          debugPrint('Card tapped.');
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Text(
-                                  'DR.MOKNER WAND',
-                                  style: TextStyle(
-                                    fontFamily: 'f',
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "DENTISTS",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Hospital",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 300,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    //to set border radius to button
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  color: Color(0xff17edf1),
-                                  child: Text(
-                                    "Book Appointment",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Container(
-                          alignment: Alignment(0.0, 2.5),
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 130,
-                            ),
-                            backgroundColor: Color(0xff1182d0),
-                            radius: 65.0,
-                          ),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        itemSize: 25,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
-                        onTap: () {
-                          debugPrint('Card tapped.');
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Text(
-                                  'DR.MOKNER WAND',
-                                  style: TextStyle(
-                                    fontFamily: 'f',
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "DENTISTS",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Hospital",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 300,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    //to set border radius to button
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  color: Color(0xff17edf1),
-                                  child: Text(
-                                    "Book Appointment",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        child: Container(
-                          alignment: Alignment(0.0, 2.5),
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 130,
-                            ),
-                            backgroundColor: Color(0xff1182d0),
-                            radius: 65.0,
-                          ),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        itemSize: 25,
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                      InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
-                        onTap: () {
-                          debugPrint('Card tapped.');
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Text(
-                                  'DR.MOKNER WAND',
-                                  style: TextStyle(
-                                    fontFamily: 'f',
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "DENTISTS",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Hospital",
-                                style: TextStyle(
-                                  fontFamily: 'f',
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 300,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    //to set border radius to button
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  color: Color(0xff17edf1),
-                                  child: Text(
-                                    "Book Appointment",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+  ]
+    )
+        )
       ),
     );
   }
