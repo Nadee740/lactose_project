@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:lactose_project/Screen/Feedback.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 
-class CurrAppointment extends StatelessWidget {
-  const CurrAppointment({Key? key}) : super(key: key);
+class FeedbackPage extends StatefulWidget {
+  const FeedbackPage({Key? key}) : super(key: key);
 
+  @override
+  _FeedbackPageState createState() => _FeedbackPageState();
+}
+
+class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +47,6 @@ class CurrAppointment extends StatelessWidget {
                   },
                 ),
               );
-              // do something
             },
           )
         ],
@@ -70,6 +75,7 @@ class CurrAppointment extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'f',
                     fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -92,6 +98,8 @@ class CurrAppointment extends StatelessWidget {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -116,6 +124,8 @@ class CurrAppointment extends StatelessWidget {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -136,6 +146,8 @@ class CurrAppointment extends StatelessWidget {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -156,6 +168,9 @@ class CurrAppointment extends StatelessWidget {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -176,6 +191,8 @@ class CurrAppointment extends StatelessWidget {
                     },
                   ),
                 );
+                // Update the state of the app.
+                // ...
               },
             ),
             ListTile(
@@ -202,7 +219,7 @@ class CurrAppointment extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                'Send Feedback',
+                'Send FeedbackPage',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'f',
@@ -210,6 +227,14 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },
@@ -218,10 +243,17 @@ class CurrAppointment extends StatelessWidget {
         ),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xff96f47e), Color(0xff17edf1)],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+          ),
+        ),
         child: Center(
           child: Container(
             width: MediaQuery.of(context).size.width / 1.2,
-            height: MediaQuery.of(context).size.height / 1.4,
+            height: MediaQuery.of(context).size.height / 1.5,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -240,22 +272,22 @@ class CurrAppointment extends StatelessWidget {
                   spreadRadius: 0.0,
                 ),
               ],
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: 160,
                   width: MediaQuery.of(context).size.width / 1.2,
-                  color: Color(0xff17edf1),
-                  child: Center(
-                    child: Text(
-                      "Appointment",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontFamily: 'f',
-                        fontWeight: FontWeight.bold,
-                      ),
+                  padding: EdgeInsets.only(
+                    top: 40,
+                  ),
+                  child: Text(
+                    'Send us your FeedbackPage!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'f',
+                      fontSize: 40,
                     ),
                   ),
                 ),
@@ -263,92 +295,49 @@ class CurrAppointment extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.2,
                   height: MediaQuery.of(context).size.height * 0.15,
                   child: Icon(
-                    Icons.alarm_on_outlined,
+                    Icons.thumb_up_rounded,
                     size: 90,
-                    color: Colors.green,
+                    color: Color.fromARGB(255, 238, 220, 57),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                ),
                 Container(
-                  child: Text(
-                    "Session Booked!",
-                    style: TextStyle(
-                        color: Colors.black, fontSize: 40, fontFamily: 'f'),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.08,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                  height: 125,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffA0D0E7FF),
+                      filled: true,
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      labelText: 'How was your experience?',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'f',
+                        fontSize: 17,
+                      ),
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025,
+                ),
+                Container(
+                  height: 50,
+                  width: 150,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff17edf1),
+                    ),
+                    child: const Text(
+                      'Send',
+                      style: TextStyle(
+                        fontFamily: 'f',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black,
                       ),
-                      Container(
-                        child: Text(
-                          "Doctor: Alfin",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontFamily: 'f',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Container(
-                        child: Text(
-                          "Date: 10/02/22",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'f',
-                            fontSize: 25,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Container(
-                        child: Text(
-                          "Time:10.45 AM",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontFamily: 'f',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Container(
-                        child: Text(
-                          "Hospital:Relief",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'f',
-                            fontSize: 25,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025,
-                      ),
-                    ],
+                    ),
+                    onPressed: () {},
                   ),
                 ),
               ],

@@ -10,6 +10,7 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -232,6 +233,14 @@ class Home extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },

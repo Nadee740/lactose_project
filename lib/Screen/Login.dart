@@ -14,40 +14,35 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isloading=false;
+  bool isloading = false;
   final storage = new FlutterSecureStorage();
   Future<void> SubmitLogin() async {
-
-    var res=await http.post(
+    var res = await http.post(
       Uri.parse('http://10.0.2.2:8000/users/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-
-        'email':emailController.text,
-        'password':passwordController.text,
-
+        'email': emailController.text,
+        'password': passwordController.text,
       }),
     );
 
-    var responsebody=json.decode(res.body);
+    var responsebody = json.decode(res.body);
     print(responsebody);
-    if(responsebody['status'].toString()=='ok')
-    { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
+    if (responsebody['status'].toString() == 'ok') {
+      await storage.write(
+          key: "jwtToken", value: responsebody['token'].toString());
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-          return Home();
-        }));
-
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Home();
+      }));
     }
     // print(responsebody['data'][0]['name']);
 
-
-    setState(() {
-
-    });
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-
                 TextButton(
                   onPressed: () {
                     //forgot password screen
@@ -121,22 +115,22 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Container(
-                    height: 50,
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: ElevatedButton(
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          fontFamily: 'f',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontFamily: 'f',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
-                      onPressed: () {
-SubmitLogin();
-
-                      },
-                    )),
+                    ),
+                    onPressed: () {
+                      SubmitLogin();
+                    },
+                  ),
+                ),
                 Row(
                   children: <Widget>[
                     const Text('Does not have account?'),

@@ -11,6 +11,7 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 
 class DoctorList extends StatefulWidget {
   const DoctorList({Key? key}) : super(key: key);
@@ -256,6 +257,14 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
                 // Update the state of the app.
                 // ...
               },

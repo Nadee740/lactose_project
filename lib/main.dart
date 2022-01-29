@@ -12,6 +12,7 @@ import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:lactose_project/Screen/feedback.dart';
 import 'package:lactose_project/Screen/signup.dart';
 import 'package:http/http.dart' as http;
 
