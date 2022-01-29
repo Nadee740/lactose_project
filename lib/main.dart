@@ -21,21 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
+
       home: CurrAppointment(),
-=======
->>>>>>> 27ed74af545afe5f23f94aed3a594791caad384f
+
+
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           color: const Color(0xff17edf1),
         ),
       ),
-<<<<<<< HEAD
-
-
-=======
-      home: DoctorList(),
->>>>>>> 27ed74af545afe5f23f94aed3a594791caad384f
     );
   }
 }

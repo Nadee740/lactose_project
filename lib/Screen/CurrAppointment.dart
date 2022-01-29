@@ -62,8 +62,7 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
+
               },
             ),
             ListTile(
@@ -80,8 +79,6 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
               },
             ),
             ListTile(
@@ -94,8 +91,6 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
               },
             ),
             ListTile(
@@ -108,8 +103,6 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
                 Navigator.pop(context);
               },
             ),
@@ -123,8 +116,6 @@ class CurrAppointment extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
               },
             ),
             ListTile(
@@ -158,8 +149,79 @@ class CurrAppointment extends StatelessWidget {
           ],
         ),
       ),
-      body: ,
+      body:Container(
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width/1.2,
+            height: MediaQuery.of(context).size.height/1.5,
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(color: Colors.grey,
+                offset: const Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,),
+                BoxShadow(
+                  color: Colors.white,
+                  offset: const Offset(0.0, 0.0),
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width:MediaQuery.of(context).size.width/1.2 ,
+                  color:Color(0xff17edf1),
+                  child: Center(child: Text("Appointment",style:TextStyle(color: Colors.white,fontSize: 25,),)),
+                ),
+                Container(
+                    width:MediaQuery.of(context).size.width/1.2,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Icon(
+                    Icons.alarm_on_rounded ,
+                    size: 90,
+                ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
+                Container(
+                  child: Text("Session Booked!",style:TextStyle(color: Colors.black,fontSize: 40,),),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                ),
+                Container(
+                  child: Text("Doctor: Alfin",style:TextStyle(color: Colors.black,fontSize: 25,),),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  child: Text("Date: 10/02/22",style:TextStyle(color: Colors.black,fontSize: 25,),),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  child: Text("Time:10.45 AM",style:TextStyle(color: Colors.black,fontSize: 25),),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  child: Text("Hospital:Relief",style:TextStyle(color: Colors.black,fontSize: 25,),),
+                ),
+              ],
+            ),
 
+          ),
+        ),
+      ),
 
     );
   }
