@@ -40,7 +40,6 @@ class _LoginPageState extends State<LoginPage> {
       }));
     }
 
-
     setState(() {});
   }
 
@@ -115,6 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+
                 Container(
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -146,8 +146,8 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                              return SignupPage();
-                            }));
+                          return SignupPage();
+                        }));
                       },
                     )
                   ],
