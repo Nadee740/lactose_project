@@ -20,10 +20,10 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController phoneController = TextEditingController();
   List<dynamic> Signupresult=<dynamic>[];
   final storage = new FlutterSecureStorage();
- bool isloading=false;
+  bool isloading=false;
   Future<void> SubmitSignup() async {
 
-     var res=await http.post(
+    var res=await http.post(
       Uri.parse('https://lactose-backend.herokuapp.com/users'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -39,19 +39,19 @@ class _SignupPageState extends State<SignupPage> {
       }),
     );
 
-     var responsebody=json.decode(res.body);
+    var responsebody=json.decode(res.body);
 
 
-     if(responsebody['status'].toString()=='ok')
-       { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
+    if(responsebody['status'].toString()=='ok')
+    { await storage.write(key: "jwtToken", value:responsebody['token'].toString());
 
-         Navigator.pushReplacement(context,
-           MaterialPageRoute(builder: (BuildContext context) {
-             return Home();
-           }));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) {
+          return Home();
+        }));
 
-       }
-     // print(responsebody['data'][0]['name']);
+    }
+    // print(responsebody['data'][0]['name']);
 
 
     setState(() {
