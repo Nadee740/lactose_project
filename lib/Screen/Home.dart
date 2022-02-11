@@ -300,6 +300,44 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
+                            return DoctorList(spec:"General Medicine" ,);
+                          },
+                        ),
+                      );
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'GENERAL MEDICINE',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
                             return DoctorList(spec:"Psychiatrist" ,);
                           },
                         ),

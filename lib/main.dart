@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
 
-          home: PatientProfile(),
+          home: Home(),
       // home:true?ImagePickerTest():LoginPage(),
 
       theme: ThemeData(
