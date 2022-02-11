@@ -29,8 +29,7 @@ class _PatientProfileState extends State<PatientProfile> {
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':
-            'Bearer ${token}'
+        'Authorization': 'Bearer ${token}'
       },
     );
     // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
@@ -57,24 +56,25 @@ class _PatientProfileState extends State<PatientProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: loading
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: Colors.cyan,
-                  ),
+      body: loading
+          ? Container(
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.cyan,
                 ),
-              )
-            : Container(
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Color(0xff96f47e), Color(0xff17edf1)])),
-                      height: MediaQuery.of(context).size.height / 2,
-                      child: Column(children: [
+              ),
+            )
+          : Container(
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Color(0xff96f47e), Color(0xff17edf1)])),
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: Column(
+                      children: [
                         Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -176,57 +176,20 @@ class _PatientProfileState extends State<PatientProfile> {
                             fontFamily: 'f',
                           ),
                         ),
-                      ]),
-                    ),
-                    SizedBox(
-                      height: 70,
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: 300,
-                          height: 70,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              //to set border radius to button
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            color: Color(0xff17edf1),
-                            child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'f',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return CurrAppointment();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ),
                         SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Container(
-                          width: 300,
-                          height: 70,
+                          width: 150,
+                          height: 50,
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
                               //to set border radius to button
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            color: Color(0xff17edf1),
+                            color: Colors.red[600],
                             child: Text(
-                              "Report",
+                              "Log Out",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'f',
@@ -234,22 +197,90 @@ class _PatientProfileState extends State<PatientProfile> {
                                 fontSize: 20,
                               ),
                             ),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return TestReport();
-                                  },
-                                ),
-                              );
-                            },
+                            onPressed: () {},
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ));
+                  ),
+                  SizedBox(
+                    height: 70,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 70,
+                        child: RaisedButton.icon(
+                          shape: RoundedRectangleBorder(
+                            //to set border radius to button
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          color: Color(0xff17edf1),
+                          icon: Icon(Icons.badge),
+                          label: Text(
+                            "Appointment",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'f',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return CurrAppointment();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        width: 300,
+                        height: 70,
+                        child: RaisedButton.icon(
+                          shape: RoundedRectangleBorder(
+                            //to set border radius to button
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          color: Color(0xff17edf1),
+                          icon: Icon(Icons.assignment),
+                          label: Text(
+                            "Report",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'f',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return TestReport();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+    );
   }
 }

@@ -73,28 +73,17 @@ class _SignupPageState extends State<SignupPage> {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
-            // Container(
-            //   alignment: Alignment.center,
-            //   padding: const EdgeInsets.all(10),
-            //   child: const Text(
-            //     'MedCo',
-            //     style: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.w500,
-            //         fontSize: 30,
-            //         fontFamily: 'f'),
-            //   ),
-            // ),
             Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'f',
-                  ),
-                )),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(10),
+              child: const Text(
+                'Sign Up',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'f',
+                ),
+              ),
+            ),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
@@ -126,7 +115,6 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
