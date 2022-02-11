@@ -179,27 +179,27 @@ class _PatientProfileState extends State<PatientProfile> {
                         SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          width: 150,
-                          height: 50,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              //to set border radius to button
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            color: Colors.red[600],
-                            child: Text(
-                              "Log Out",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'f',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
+                        // Container(
+                        //   width: 150,
+                        //   height: 50,
+                        //   child: RaisedButton(
+                        //     shape: RoundedRectangleBorder(
+                        //       //to set border radius to button
+                        //       borderRadius: BorderRadius.circular(15),
+                        //     ),
+                        //     color: Colors.red[600],
+                        //     child: Text(
+                        //       "Log Out",
+                        //       style: TextStyle(
+                        //         color: Colors.black,
+                        //         fontFamily: 'f',
+                        //         fontWeight: FontWeight.bold,
+                        //         fontSize: 20,
+                        //       ),
+                        //     ),
+                        //     onPressed: () {},
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
