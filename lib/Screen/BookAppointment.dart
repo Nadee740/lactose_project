@@ -8,53 +8,50 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:time_range/time_range.dart';
 import 'package:alert_dialog/alert_dialog.dart';
 import 'package:http/http.dart' as http;
+
 class BookAppointment extends StatefulWidget {
-  const BookAppointment({Key? key,required this.docid}) : super(key: key);
+  const BookAppointment({Key? key, required this.docid}) : super(key: key);
   final String docid;
   @override
   State<BookAppointment> createState() => _BookAppointmentState();
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
-  bool loading=false;
+  bool loading = false;
   List<dynamic> Doctors = <dynamic>[];
   List<dynamic> FilteredDoctors = <dynamic>[];
-  Map UserData=Map <String,dynamic>();
-  Map Doctordata=Map <String,dynamic>();
-   String date="";
-   String time="";
+  Map UserData = Map<String, dynamic>();
+  Map Doctordata = Map<String, dynamic>();
+  String date = "";
+  String time = "";
 
   final _defaultTimeRange = TimeRangeResult(
     TimeOfDay(hour: 14, minute: 50),
     TimeOfDay(hour: 15, minute: 20),
   );
-  Future<void> SubmitAppointmnet()async{
+  Future<void> SubmitAppointmnet() async {
     var url = "https://lactose-backend.herokuapp.com/create-appointment";
-    var res=await http.post(
+    var res = await http.post(
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-       "patientid":UserData['_id'],
-        "date":date,
-        "doctorId":widget.docid,
-        "hospitalid":Doctordata['hospital_id'],
-        "desc":"create cheyd pooi adhaata"
-
+        "patientid": UserData['_id'],
+        "date": date,
+        "doctorId": widget.docid,
+        "hospitalid": Doctordata['hospital_id'],
+        "desc": "create cheyd pooi adhaata"
       }),
     );
-    var responsebody=json.decode(res.body);
+    var responsebody = json.decode(res.body);
     print(responsebody);
-    if(responsebody['status']=="ok")
-      {
-        showAlertDialog(context,Doctordata['name'],date);
-      }
-
+    if (responsebody['status'] == "ok") {
+      showAlertDialog(context, Doctordata['name'], date);
+    }
   }
 
   Future<void> getDataFromApi() async {
-
     var url = "https://lactose-backend.herokuapp.com/doctor/${widget.docid}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
@@ -69,8 +66,7 @@ class _BookAppointmentState extends State<BookAppointment> {
       Uri.parse(url1),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':
-        'Bearer ${token}'
+        'Authorization': 'Bearer ${token}'
       },
     );
 
@@ -78,11 +74,12 @@ class _BookAppointmentState extends State<BookAppointment> {
     var responsebodyuser = json.decode(response.body);
 
     setState(() {
-      Doctordata= responsebody['data'];
-      UserData=responsebodyuser['data'];
+      Doctordata = responsebody['data'];
+      UserData = responsebodyuser['data'];
       loading = false;
     });
   }
+
   TimeRangeResult? _timeRange;
   @override
   void initState() {
@@ -90,10 +87,11 @@ class _BookAppointmentState extends State<BookAppointment> {
     super.initState();
     _timeRange = _defaultTimeRange;
     setState(() {
-      loading=true;
+      loading = true;
     });
     getDataFromApi();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +122,10 @@ class _BookAppointmentState extends State<BookAppointment> {
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
+
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -253,21 +255,23 @@ class _BookAppointmentState extends State<BookAppointment> {
           ],
         ),
       ),
-      body:loading?Container(
+      body: loading
+          ? Container(
         height: MediaQuery.of(context).size.height,
         child: Center(
           child: CircularProgressIndicator(
             backgroundColor: Colors.cyan,
           ),
         ),
-      ):SingleChildScrollView(
+      )
+          : SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 1250,
           child: Column(
             children: [
               Container(
-                color: Colors.blue,
+                color: Colors.grey,
                 height: 250,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
@@ -282,23 +286,57 @@ class _BookAppointmentState extends State<BookAppointment> {
                         radius: 65.0,
                       ),
                     ),
-                    Text(Doctordata['name'],style:TextStyle(color: Colors.black,fontSize: 40,),),
-                    Text("${Doctordata['specification']} ",style:TextStyle(color: Colors.black,fontSize: 22,),),
-                    Padding(padding: const EdgeInsets.only(top: 15),),
+                    Text(
+                      Doctordata['name'],
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40,
+                        fontFamily: 'f',
+                      ),
+                    ),
+                    Text(
+                      "${Doctordata['specification']} ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontFamily: 'f',
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          child: Center(child: Text(Doctordata['qualification'],style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
+                          child: Center(
+                            child: Text(
+                              Doctordata['qualification'],
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'f',
+                              ),
+                            ),
+                          ),
                           color: Color(0xff4fe5a8),
                           height: 20,
-                          width: MediaQuery.of(context).size.width/3.5,
+                          width: MediaQuery.of(context).size.width / 3.1,
                         ),
                         Container(
-                          child: Center(child: Text("Experience:${Doctordata['exprnc']} Yrs+",style: TextStyle(color:Colors.black,fontFamily: 'A'),)),
+                          child: Center(
+                            child: Text(
+                              "Experience:${Doctordata['exprnc']} Yrs+",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'f',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                           color: Color(0xff4fe5a8),
                           height: 20,
-                          width: MediaQuery.of(context).size.width/3.3,
+                          width: MediaQuery.of(context).size.width / 3.1,
                         ),
                       ],
                     ),
@@ -311,17 +349,34 @@ class _BookAppointmentState extends State<BookAppointment> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    Padding(padding: const EdgeInsets.only(top: 20),),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                    ),
                     Container(
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("About Doctor",style: TextStyle(fontSize: 25),),
+                        child: Text(
+                          "About Doctor:",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontFamily: 'f',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.only(top: 20),),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(Doctordata['qualification']+" me d pwolieeeyyy",style: TextStyle(fontSize: 10),),
+                      child: Text(
+                        Doctordata['qualification'] + " me d pwolieeeyyy",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'f',
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -331,11 +386,19 @@ class _BookAppointmentState extends State<BookAppointment> {
                   color: Colors.lightBlueAccent,
                   child: Column(
                     children: [
-                      Padding(padding: const EdgeInsets.only(top: 20),),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                      ),
                       Container(
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text("Book Slot",style: TextStyle(fontSize: 25),),
+                          child: Text(
+                            "Book Slot:",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontFamily: 'f',
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ),
                       Container(
@@ -344,34 +407,63 @@ class _BookAppointmentState extends State<BookAppointment> {
                           lastDay: DateTime.utc(2030, 3, 14),
                           focusedDay: DateTime.now(),
                           selectedDayPredicate: (day) {
-
                             return true;
                           },
                           onDaySelected: (selectedDay, focusedDay) {
-
-                            setState(() {
-                              date=selectedDay.day.toString()+"-"+selectedDay.month.toString()+"-"+selectedDay.year.toString();
-                            });
+                            setState(
+                                  () {
+                                date = selectedDay.day.toString() +
+                                    "-" +
+                                    selectedDay.month.toString() +
+                                    "-" +
+                                    selectedDay.year.toString();
+                              },
+                            );
                           },
                         ),
-
                       ),
                       Container(
                         child: Column(
                           children: [
-                            Padding(padding: const EdgeInsets.only(top: 20),),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                            ),
                             Container(
                               child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text("Time",style: TextStyle(fontSize: 25),),
+                                child: Text(
+                                  "Time:",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: 'f',
+                                  ),
+                                ),
                               ),
                             ),
                             TimeRange(
-                              fromTitle: Text('From', style: TextStyle(fontSize: 18, color: Colors.grey),),
-                              toTitle: Text('To', style: TextStyle(fontSize: 18, color: Colors.grey),),
+                              fromTitle: Text(
+                                'From',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'f',
+                                ),
+                              ),
+                              toTitle: Text(
+                                'To',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'f',
+                                ),
+                              ),
                               titlePadding: 20,
-                              textStyle: TextStyle(fontWeight: FontWeight.normal, color: Colors.black87),
-                              activeTextStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black87),
+                              activeTextStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                               borderColor: Colors.black,
                               backgroundColor: Colors.transparent,
                               activeBackgroundColor: Colors.orange,
@@ -379,56 +471,73 @@ class _BookAppointmentState extends State<BookAppointment> {
                               lastTime: TimeOfDay(hour: 16, minute: 00),
                               timeStep: 30,
                               timeBlock: 30,
-                              onRangeCompleted: (range) => setState(() => _timeRange = range),
+                              onRangeCompleted: (range) =>
+                                  setState(() => _timeRange = range),
                             ),
                           ],
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.only(top: 50),),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                      ),
                       Container(
-                        width:300,
+                        width: 300,
                         height: 50,
                         child: RaisedButton(
-                          color:Color(0xff1d3d7d),
-                          child: Text("Book Appointment",style: TextStyle(color: Colors.white,fontFamily: 'A'),),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          color: Color(0xff17edf1),
+                          child: Text(
+                            "Book Appointment",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'f',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
                           onPressed: () {
-                           SubmitAppointmnet();
+                            SubmitAppointmnet();
                             // showAlertDialog(context);
                           },
                         ),
                       ),
                     ],
                   ),
-
                 ),
               ),
-
             ],
           ),
         ),
       ),
-
     );
   }
 }
-showAlertDialog(BuildContext context,String name,String date) {
+
+showAlertDialog(BuildContext context, String name, String date) {
   // set up the buttons
   Widget cancelButton = FlatButton(
     child: Text("PROCEED"),
     onPressed: () {
-      Navigator.pushReplacement(context, PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 1),
-          transitionsBuilder: (BuildContext context,
-              Animation<double> animation, Animation<double> secAnimation,
-              Widget child) {
-            return ScaleTransition(scale: animation,
-              alignment: Alignment.center,
-              child: child,);
-          },
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secAnimation) {
-            return Home();
-          }));
+      Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                return ScaleTransition(
+                  scale: animation,
+                  alignment: Alignment.center,
+                  child: child,
+                );
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return Home();
+              }));
     },
   );
 
@@ -438,7 +547,6 @@ showAlertDialog(BuildContext context,String name,String date) {
     content: Text("Doctor:${name}\nDate : ${date}"),
     actions: [
       cancelButton,
-
     ],
   );
 
@@ -447,7 +555,8 @@ showAlertDialog(BuildContext context,String name,String date) {
     context: context,
     builder: (BuildContext context) {
       return WillPopScope(
-          onWillPop: () async{return true;
+          onWillPop: () async {
+            return true;
             // Navigator.pushReplacement(
             //     context, MaterialPageRoute(builder: (BuildContext context) {
             //   return Home();
