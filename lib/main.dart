@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -37,8 +38,8 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
 
-
-      home:loggedin?Home():LoginPage(),
+        home: BookAppointment(docid: '61f52bd822ea8a21cc1edab6'),
+      // home:loggedin?Home():LoginPage(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(
