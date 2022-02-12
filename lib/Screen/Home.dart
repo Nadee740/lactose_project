@@ -9,6 +9,7 @@ import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/Symptoms.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
 
@@ -59,10 +60,6 @@ class Home extends StatelessWidget {
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
-
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -245,6 +242,29 @@ class Home extends StatelessWidget {
                 // ...
               },
             ),
+            ListTile(
+              title: const Text(
+                'Symptoms',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Symptoms();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
+              },
+            ),
           ],
         ),
       ),
@@ -304,7 +324,49 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Psychiatrist" ,);
+                            return DoctorList(
+                              spec: "General Medicine",
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Center(
+                        child: Text(
+                          'GENERAL MEDICINE',
+                          style: TextStyle(
+                            fontFamily: 'f',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList(
+                              spec: "Psychiatrist",
+                            );
                           },
                         ),
                       );
@@ -342,7 +404,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Neurologist" ,);
+                            return DoctorList(
+                              spec: "Neurologist",
+                            );
                           },
                         ),
                       );
@@ -381,7 +445,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Pediatrician" ,);
+                            return DoctorList(
+                              spec: "Pediatrician",
+                            );
                           },
                         ),
                       );
@@ -420,7 +486,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Cardiologist",);
+                            return DoctorList(
+                              spec: "Cardiologist",
+                            );
                           },
                         ),
                       );
@@ -439,7 +507,6 @@ class Home extends StatelessWidget {
                       )),
                     ),
                   ),
-                  
                 ),
               ),
               Card(
@@ -459,7 +526,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Gynaecologist",);
+                            return DoctorList(
+                              spec: "Gynaecologist",
+                            );
                           },
                         ),
                       );
@@ -498,7 +567,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Dentist",);
+                            return DoctorList(
+                              spec: "Dentist",
+                            );
                           },
                         ),
                       );
