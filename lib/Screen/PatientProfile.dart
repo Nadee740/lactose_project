@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/Login.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:image_picker/image_picker.dart';
 class PatientProfile extends StatefulWidget {
@@ -215,7 +216,16 @@ class _PatientProfileState extends State<PatientProfile> {
                   RaisedButton(
                       child: Text("Logout",style: TextStyle(fontFamily: 'f',color: Colors.black),),
                       color: Color(0xff00f6fa),
-                      onPressed: (){}
+                      onPressed: (){
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return LoginPage();
+                            },
+                          ),
+                        );
+                      }
                       )
                 ],
               ),
