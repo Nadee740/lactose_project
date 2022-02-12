@@ -17,13 +17,14 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/Symptoms.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
 import 'package:lactose_project/Screen/signup.dart';
 import 'package:http/http.dart' as http;
 
-bool loggedin=false;
-Future<void>  main() async {
+bool loggedin = false;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   checkLogin();
   runApp(const MyApp());
@@ -35,10 +36,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
 
+<<<<<<< HEAD
           home: ShowHospitals(),
+=======
+      home: Symptoms(),
+>>>>>>> 9e42d524348ea86c02bef553dd6c6f81439e7426
       // home:true?ImagePickerTest():LoginPage(),
 
       theme: ThemeData(
@@ -66,6 +70,6 @@ void checkLogin() async {
   // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
   var responsebody = json.decode(res.body);
 
-  responsebody['status']=="failed" ? loggedin=false: loggedin=true;
+  responsebody['status'] == "failed" ? loggedin = false : loggedin = true;
   return;
 }

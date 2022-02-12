@@ -10,6 +10,7 @@ import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/Symptoms.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
 
@@ -242,6 +243,29 @@ class Home extends StatelessWidget {
                 // ...
               },
             ),
+            ListTile(
+              title: const Text(
+                'Symptoms',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Symptoms();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
+              },
+            ),
           ],
         ),
       ),
@@ -301,7 +325,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"General Medicine" ,);
+                            return DoctorList(
+                              spec: "General Medicine",
+                            );
                           },
                         ),
                       );
@@ -339,7 +365,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Psychiatrist" ,);
+                            return DoctorList(
+                              spec: "Psychiatrist",
+                            );
                           },
                         ),
                       );
@@ -377,7 +405,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Neurologist" ,);
+                            return DoctorList(
+                              spec: "Neurologist",
+                            );
                           },
                         ),
                       );
@@ -416,7 +446,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec:"Pediatrician" ,);
+                            return DoctorList(
+                              spec: "Pediatrician",
+                            );
                           },
                         ),
                       );
@@ -455,7 +487,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Cardiologist",);
+                            return DoctorList(
+                              spec: "Cardiologist",
+                            );
                           },
                         ),
                       );
@@ -474,7 +508,6 @@ class Home extends StatelessWidget {
                       )),
                     ),
                   ),
-                  
                 ),
               ),
               Card(
@@ -494,7 +527,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Gynaecologist",);
+                            return DoctorList(
+                              spec: "Gynaecologist",
+                            );
                           },
                         ),
                       );
@@ -533,7 +568,9 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return DoctorList(spec: "Dentist",);
+                            return DoctorList(
+                              spec: "Dentist",
+                            );
                           },
                         ),
                       );
