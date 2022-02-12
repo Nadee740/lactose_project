@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -364,10 +364,20 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.08,
+                        height: MediaQuery.of(context).size.height * 0.016,
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width / 2,
+                        child: GestureDetector(
+                          onTap: (){launch('https://open.spotify.com/playlist/18GohtNrNAEQKDoRGoCTt');},
+                          child: Text("Click here to join meeting", style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,fontSize: 15),
+                          ),),
+
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.055,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.5,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           gradient: LinearGradient(
