@@ -100,7 +100,7 @@ class _PatientProfileState extends State<PatientProfile> {
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       colors: [Color(0xff96f47e), Color(0xff17edf1)])),
-              height: MediaQuery.of(context).size.height / 1.8,
+              height: MediaQuery.of(context).size.height / 1.6,
               child: Column(
                 children: [
                   Container(
@@ -210,13 +210,18 @@ class _PatientProfileState extends State<PatientProfile> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 14,
                   ),
+                  RaisedButton(
+                      child: Text("Logout",style: TextStyle(fontFamily: 'f',color: Colors.black),),
+                      color: Color(0xff00f6fa),
+                      onPressed: (){}
+                      )
                 ],
               ),
             ),
             SizedBox(
-              height: 70,
+              height: 30,
             ),
             Column(
               children: [
