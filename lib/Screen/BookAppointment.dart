@@ -271,8 +271,8 @@ class _BookAppointmentState extends State<BookAppointment> {
           child: Column(
             children: [
               Container(
-                color: Colors.grey,
-                height: 250,
+                decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xff96f47e), Color(0xff17edf1)])),
+                height: 370,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
@@ -282,7 +282,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                           Icons.account_circle_sharp,
                           size: 130,
                         ),
-                        backgroundColor: Color(0xff0d1113),
+                        backgroundColor: Color(0xff1d6e97),
                         radius: 65.0,
                       ),
                     ),
@@ -290,7 +290,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                       Doctordata['name'],
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 40,
+                        fontSize: 34,
                         fontFamily: 'f',
                       ),
                     ),
@@ -319,7 +319,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                               ),
                             ),
                           ),
-                          color: Color(0xff4fe5a8),
+                          color: Color(0xffffffff),
                           height: 20,
                           width: MediaQuery.of(context).size.width / 3.1,
                         ),
@@ -334,27 +334,19 @@ class _BookAppointmentState extends State<BookAppointment> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          color: Color(0xff4fe5a8),
+                          color: Color(0xffffffff),
                           height: 20,
                           width: MediaQuery.of(context).size.width / 3.1,
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                color: Colors.orange,
-                height: 120,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
+
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                     ),
                     Container(
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Text(
                           "About Doctor:",
                           style: TextStyle(
@@ -369,7 +361,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                       padding: const EdgeInsets.only(top: 20),
                     ),
                     Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text(
                         Doctordata['qualification'] + " me d pwolieeeyyy",
                         style: TextStyle(
@@ -383,7 +375,6 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
               Expanded(
                 child: Container(
-                  color: Colors.lightBlueAccent,
                   child: Column(
                     children: [
                       Padding(
@@ -466,7 +457,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                   color: Colors.white),
                               borderColor: Colors.black,
                               backgroundColor: Colors.transparent,
-                              activeBackgroundColor: Colors.orange,
+                              activeBackgroundColor: Colors.lightBlueAccent,
                               firstTime: TimeOfDay(hour: 9, minute: 30),
                               lastTime: TimeOfDay(hour: 16, minute: 00),
                               timeStep: 30,
@@ -493,7 +484,6 @@ class _BookAppointmentState extends State<BookAppointment> {
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'f',
-                              fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
                           ),
@@ -518,7 +508,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 showAlertDialog(BuildContext context, String name, String date) {
   // set up the buttons
   Widget cancelButton = FlatButton(
-    child: Text("PROCEED"),
+    child: Text("PROCEED",style: TextStyle(fontFamily: 'f'),),
     onPressed: () {
       Navigator.pushReplacement(
           context,
@@ -543,8 +533,8 @@ showAlertDialog(BuildContext context, String name, String date) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Appointment Confirmed!"),
-    content: Text("Doctor:${name}\nDate : ${date}"),
+    title: Text("Appointment Confirmed!",style: TextStyle(fontFamily: 'f'),),
+    content: Text("Doctor:${name}\nDate : ${date}",style: TextStyle(fontFamily: 'f'),),
     actions: [
       cancelButton,
     ],

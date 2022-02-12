@@ -57,7 +57,7 @@ class _DoctorListState extends State<DoctorList> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "App-Name",
+          "MedCo",
           style: TextStyle(
               fontFamily: 'f',
               fontSize: 30,
