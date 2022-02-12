@@ -38,11 +38,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-<<<<<<< HEAD
-          home: ShowHospitals(),
-=======
-      home: Symptoms(),
->>>>>>> 9e42d524348ea86c02bef553dd6c6f81439e7426
+
+          home: Home(),
       // home:true?ImagePickerTest():LoginPage(),
 
       theme: ThemeData(

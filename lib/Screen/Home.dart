@@ -174,7 +174,6 @@ class Home extends StatelessWidget {
                 );
                 // Update the state of the app.
                 // ...
-                Navigator.pop(context);
               },
             ),
             ListTile(

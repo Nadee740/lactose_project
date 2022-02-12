@@ -51,6 +51,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
       appBar: AppBar(
         title: Text("MedCo",style: TextStyle(color: Colors.black),),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
         // leading: Icon(
         //   Icons.account_circle_rounded,
         // ),
