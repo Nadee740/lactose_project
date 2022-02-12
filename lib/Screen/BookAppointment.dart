@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:time_range/time_range.dart';
 import 'package:alert_dialog/alert_dialog.dart';
@@ -115,7 +116,14 @@ class _BookAppointmentState extends State<BookAppointment> {
               size: 30,
             ),
             onPressed: () {
-              // do something
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
             },
           )
         ],

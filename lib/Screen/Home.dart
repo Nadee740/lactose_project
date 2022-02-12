@@ -5,6 +5,7 @@ import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'dart:ui';
 
 import 'package:lactose_project/Screen/DoctorList.dart';
+import 'package:lactose_project/Screen/Login.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
@@ -154,7 +155,7 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                'Hospitals',
+                'Hospital',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'f',
