@@ -42,6 +42,8 @@ dependencies:
   alert_dialog: ^1.0.0
   sqflite: ^2.0.2
   flutter_secure_storage: ^5.0.2
+  image_picker: ^0.8.4+8
+
 
 
 dev_dependencies:

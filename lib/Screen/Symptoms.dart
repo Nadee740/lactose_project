@@ -21,6 +21,7 @@ bool selected1 = false;
 bool selected2 = false;
 bool selected3 = false;
 bool selected4 = false;
+bool selected5 = false;
 
 class _SymptomsState extends State<Symptoms> {
   @override
@@ -263,7 +264,7 @@ class _SymptomsState extends State<Symptoms> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 30,
+              height: 100,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
@@ -274,20 +275,32 @@ class _SymptomsState extends State<Symptoms> {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 20,
             ),
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height * 0.2,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  20,
+              height: MediaQuery.of(context).size.height * 0.3,
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: const Offset(
+                    5.0,
+                    5.0,
+                  ),
+                  blurRadius: 15,
+                  spreadRadius: 1.0,
                 ),
-              ),
+                BoxShadow(
+                  color: Colors.white,
+                  offset: const Offset(0.0, 0.0),
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                ),
+              ], borderRadius: BorderRadius.circular(15)),
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 10,
+                  top: 10,
                 ),
                 child: Wrap(
                   spacing: 5,
@@ -296,7 +309,10 @@ class _SymptomsState extends State<Symptoms> {
                     Container(
                       child: FilterChip(
                         label: Text('Fever'),
+                        elevation: 10,
+                        pressElevation: 5,
                         selected: selected1,
+                        selectedColor: Color(0xff17edf1),
                         onSelected: (bool value) {
                           selected1 = value;
                           setState(() {});
@@ -307,6 +323,9 @@ class _SymptomsState extends State<Symptoms> {
                       child: FilterChip(
                         label: Text('Cough'),
                         selected: selected2,
+                        selectedColor: Color(0xff17edf1),
+                        elevation: 10,
+                        pressElevation: 5,
                         onSelected: (bool value) {
                           selected2 = value;
                           setState(() {});
@@ -317,6 +336,9 @@ class _SymptomsState extends State<Symptoms> {
                       child: FilterChip(
                         label: Text('Vomiting'),
                         selected: selected3,
+                        selectedColor: Color(0xff17edf1),
+                        elevation: 10,
+                        pressElevation: 5,
                         onSelected: (bool value) {
                           selected3 = value;
                           setState(() {});
@@ -327,8 +349,24 @@ class _SymptomsState extends State<Symptoms> {
                       child: FilterChip(
                         label: Text('Vomiting'),
                         selected: selected4,
+                        elevation: 10,
+                        selectedColor: Color(0xff17edf1),
+                        pressElevation: 5,
                         onSelected: (bool value) {
                           selected4 = value;
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    Container(
+                      child: FilterChip(
+                        label: Text('+Other'),
+                        selected: selected5,
+                        elevation: 10,
+                        selectedColor: Color(0xff17edf1),
+                        pressElevation: 5,
+                        onSelected: (bool value) {
+                          selected5 = value;
                           setState(() {});
                         },
                       ),
@@ -355,11 +393,130 @@ class _SymptomsState extends State<Symptoms> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+                    print('hi');
+                    showAlertDialog(context);
+                  }),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Stack(
+      children: [
+        Icon(Icons.home),
+      ],
+    ),
+    onPressed: () {
+      Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                return ScaleTransition(
+                  scale: animation,
+                  alignment: Alignment.center,
+                  child: child,
+                );
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return Home();
+              }));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Center(
+      child: Text(
+        "Search Result..!",
+        style: TextStyle(
+          fontFamily: 'f',
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+    content: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      height: 400,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Diseases:',
+              style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              'Corona',
+              style: TextStyle(
+                fontFamily: 'f',
+                fontSize: 18,
+                fontWeight: FontWeight.w100,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Precautions:',
+              style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              '*Cover your nose and mouth when around others',
+              style: TextStyle(
+                  fontFamily: 'f', fontSize: 18, fontWeight: FontWeight.w100),
+            ),
+          ],
+        ),
+      ),
+    ),
+    actions: [
+      cancelButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return WillPopScope(
+          onWillPop: () async {
+            return true;
+            // Navigator.pushReplacement(
+            //     context, MaterialPageRoute(builder: (BuildContext context) {
+            //   return Home();
+            // }));
+          },
+          child: alert);
+    },
+  );
 }

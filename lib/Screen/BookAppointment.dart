@@ -257,133 +257,172 @@ class _BookAppointmentState extends State<BookAppointment> {
       ),
       body: loading
           ? Container(
-              height: MediaQuery.of(context).size.height,
-              child: Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.cyan,
-                ),
-              ),
-            )
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.cyan,
+          ),
+        ),
+      )
           : SingleChildScrollView(
-              child: Container(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 1250,
+          child: Column(
+            children: [
+              Container(
+                color: Colors.grey,
+                height: 250,
                 width: MediaQuery.of(context).size.width,
-                height: 1250,
                 child: Column(
                   children: [
-                    Container(
-                      color: Colors.grey,
-                      height: 250,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            child: CircleAvatar(
-                              child: Icon(
-                                Icons.account_circle_sharp,
-                                size: 130,
-                              ),
-                              backgroundColor: Color(0xff0d1113),
-                              radius: 65.0,
-                            ),
-                          ),
-                          Text(
-                            Doctordata['name'],
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 40,
-                              fontFamily: 'f',
-                            ),
-                          ),
-                          Text(
-                            "${Doctordata['specification']} ",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 22,
-                              fontFamily: 'f',
-                              letterSpacing: 2,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                child: Center(
-                                  child: Text(
-                                    Doctordata['qualification'],
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                    ),
-                                  ),
-                                ),
-                                color: Color(0xff4fe5a8),
-                                height: 20,
-                                width: MediaQuery.of(context).size.width / 3.1,
-                              ),
-                              Container(
-                                child: Center(
-                                  child: Text(
-                                    "Experience:${Doctordata['exprnc']} Yrs+",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'f',
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                color: Color(0xff4fe5a8),
-                                height: 20,
-                                width: MediaQuery.of(context).size.width / 3.1,
-                              ),
-                            ],
-                          ),
-                        ],
+                    SizedBox(
+                      child: CircleAvatar(
+                        child: Icon(
+                          Icons.account_circle_sharp,
+                          size: 130,
+                        ),
+                        backgroundColor: Color(0xff0d1113),
+                        radius: 65.0,
                       ),
                     ),
-                    Container(
-                      color: Colors.orange,
-                      height: 120,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                          ),
-                          Container(
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "About Doctor:",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontFamily: 'f',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
+                    Text(
+                      Doctordata['name'],
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40,
+                        fontFamily: 'f',
+                      ),
+                    ),
+                    Text(
+                      "${Doctordata['specification']} ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontFamily: 'f',
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          child: Center(
                             child: Text(
-                              Doctordata['qualification'] + " me d pwolieeeyyy",
+                              Doctordata['qualification'],
                               style: TextStyle(
-                                fontSize: 15,
+                                color: Colors.black,
                                 fontFamily: 'f',
                               ),
                             ),
                           ),
-                        ],
+                          color: Color(0xff4fe5a8),
+                          height: 20,
+                          width: MediaQuery.of(context).size.width / 3.1,
+                        ),
+                        Container(
+                          child: Center(
+                            child: Text(
+                              "Experience:${Doctordata['exprnc']} Yrs+",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'f',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          color: Color(0xff4fe5a8),
+                          height: 20,
+                          width: MediaQuery.of(context).size.width / 3.1,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.orange,
+                height: 120,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                    ),
+                    Container(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "About Doctor:",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontFamily: 'f',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.lightBlueAccent,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        Doctordata['qualification'] + " me d pwolieeeyyy",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'f',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.lightBlueAccent,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                      ),
+                      Container(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Book Slot:",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontFamily: 'f',
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: TableCalendar(
+                          firstDay: DateTime.utc(2010, 10, 16),
+                          lastDay: DateTime.utc(2030, 3, 14),
+                          focusedDay: DateTime.now(),
+                          selectedDayPredicate: (day) {
+                            return true;
+                          },
+                          onDaySelected: (selectedDay, focusedDay) {
+                            setState(
+                                  () {
+                                date = selectedDay.day.toString() +
+                                    "-" +
+                                    selectedDay.month.toString() +
+                                    "-" +
+                                    selectedDay.year.toString();
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      Container(
                         child: Column(
                           children: [
                             Padding(
@@ -393,124 +432,85 @@ class _BookAppointmentState extends State<BookAppointment> {
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  "Book Slot:",
+                                  "Time:",
                                   style: TextStyle(
-                                      fontSize: 25,
-                                      fontFamily: 'f',
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: TableCalendar(
-                                firstDay: DateTime.utc(2010, 10, 16),
-                                lastDay: DateTime.utc(2030, 3, 14),
-                                focusedDay: DateTime.now(),
-                                selectedDayPredicate: (day) {
-                                  return true;
-                                },
-                                onDaySelected: (selectedDay, focusedDay) {
-                                  setState(
-                                    () {
-                                      date = selectedDay.day.toString() +
-                                          "-" +
-                                          selectedDay.month.toString() +
-                                          "-" +
-                                          selectedDay.year.toString();
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                            Container(
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                  ),
-                                  Container(
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "Time:",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontFamily: 'f',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  TimeRange(
-                                    fromTitle: Text(
-                                      'From',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontFamily: 'f',
-                                      ),
-                                    ),
-                                    toTitle: Text(
-                                      'To',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontFamily: 'f',
-                                      ),
-                                    ),
-                                    titlePadding: 20,
-                                    textStyle: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.black87),
-                                    activeTextStyle: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                    borderColor: Colors.black,
-                                    backgroundColor: Colors.transparent,
-                                    activeBackgroundColor: Colors.orange,
-                                    firstTime: TimeOfDay(hour: 9, minute: 30),
-                                    lastTime: TimeOfDay(hour: 16, minute: 00),
-                                    timeStep: 30,
-                                    timeBlock: 30,
-                                    onRangeCompleted: (range) =>
-                                        setState(() => _timeRange = range),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50),
-                            ),
-                            Container(
-                              width: 300,
-                              height: 50,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                color: Color(0xff17edf1),
-                                child: Text(
-                                  "Book Appointment",
-                                  style: TextStyle(
-                                    color: Colors.black,
+                                    fontSize: 25,
                                     fontFamily: 'f',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
                                   ),
                                 ),
-                                onPressed: () {
-                                  SubmitAppointmnet();
-                                  // showAlertDialog(context);
-                                },
                               ),
+                            ),
+                            TimeRange(
+                              fromTitle: Text(
+                                'From',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'f',
+                                ),
+                              ),
+                              toTitle: Text(
+                                'To',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'f',
+                                ),
+                              ),
+                              titlePadding: 20,
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black87),
+                              activeTextStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                              borderColor: Colors.black,
+                              backgroundColor: Colors.transparent,
+                              activeBackgroundColor: Colors.orange,
+                              firstTime: TimeOfDay(hour: 9, minute: 30),
+                              lastTime: TimeOfDay(hour: 16, minute: 00),
+                              timeStep: 30,
+                              timeBlock: 30,
+                              onRangeCompleted: (range) =>
+                                  setState(() => _timeRange = range),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                      ),
+                      Container(
+                        width: 300,
+                        height: 50,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          color: Color(0xff17edf1),
+                          child: Text(
+                            "Book Appointment",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'f',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: () {
+                            SubmitAppointmnet();
+                            // showAlertDialog(context);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
