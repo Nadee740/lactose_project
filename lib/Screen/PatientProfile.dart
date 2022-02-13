@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/Login.dart';
@@ -20,6 +21,7 @@ class _PatientProfileState extends State<PatientProfile> {
   final ImagePicker _picker = ImagePicker();
   PickedFile image4=PickedFile("");
   XFile? image;
+
   void selectimage(XFile? pickIMage)async{
     XFile? tempimage=await pickIMage;
     setState(() {
@@ -48,167 +50,10 @@ class _PatientProfileState extends State<PatientProfile> {
 
   late Map<String, dynamic> Data;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   Future<void> getDataFromApi() async {
     final storage = new FlutterSecureStorage();
 
-    var url = "https://lactose-backend.herokuapp.com/users/me";
+    var url = "${Urlclass.url}users/me";
     var token = await storage.read(key: "jwtToken");
 
     var res = await http.get(
@@ -296,12 +141,12 @@ class _PatientProfileState extends State<PatientProfile> {
                         Container(
                           width: double.infinity,
                           child: Container(
-                            alignment: Alignment(0.0, 2.5),
-                            child:
-                            image!=null? CircleAvatar(
-                              backgroundImage: FileImage(File(image!.path)),
-                              backgroundColor: Color(0xff1182d0),
-                              radius: 65.0,) :CircleAvatar(
+                              alignment: Alignment(0.0, 2.5),
+                              child:
+                              image!=null? CircleAvatar(
+                                backgroundImage: FileImage(File(image!.path)),
+                                backgroundColor: Color(0xff1182d0),
+                                radius: 65.0,) :CircleAvatar(
                                 child:Icon(Icons.account_circle,size: 120,),radius: 60,)
                           ),
                         ),
@@ -314,7 +159,7 @@ class _PatientProfileState extends State<PatientProfile> {
                       onPressed: ()async{
                         final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
                         selectimage(image);
-                        print(image);
+
                       },
                     ),
                   ),
@@ -383,7 +228,7 @@ class _PatientProfileState extends State<PatientProfile> {
                           ),
                         );
                       }
-                      )
+                  )
                 ],
               ),
             ),

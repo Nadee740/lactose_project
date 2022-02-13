@@ -1,7 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:lactose_project/Screen/CurrAppointment.dart';
-import 'package:lactose_project/Screen/TestReport.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
+import 'package:lactose_project/Screen/CurrAppointment.dart';
+import 'package:lactose_project/Screen/DoctorList.dart';
+import 'package:lactose_project/Screen/Feedback.dart';
+import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/PatientProfile.dart';
+import 'package:lactose_project/Screen/ShowAmbulance.dart';
+import 'package:lactose_project/Screen/ShowHospitals.dart';
+import 'package:lactose_project/Screen/Symptoms.dart';
+import 'package:lactose_project/Screen/TestReport.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 class ShowsLabs extends StatefulWidget {
   const ShowsLabs({Key? key}) : super(key: key);
 
@@ -10,149 +22,393 @@ class ShowsLabs extends StatefulWidget {
 }
 
 class _ShowsLabsState extends State<ShowsLabs> {
+  List<dynamic> Labs = <dynamic>[];
+
+  bool loading=false;
+  Future<void> getDataFromApi() async {
+    setState(() {
+      loading=true;
+    });
+    var url = "${Urlclass.url}labs";
+    var res = await http.get(Uri.parse(url));
+    var responsebody = json.decode(res.body);
+   print(responsebody['data']);
+
+    setState(() {
+      Labs = responsebody['data'];
+
+      loading = false;
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDataFromApi();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body:Container(
-        //   height: MediaQuery.of(context).size.height/2.3,
-        //   decoration: BoxDecoration(
-        //     gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)]),
-        //   ),
-        //
-        //
-        //   // gradient: LinearGradient(colors:[Color(0xff96f47e), Color(0xff17edf1)])
-        // ),
-
-        body: Container(
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
+      appBar: AppBar(
+        title: Text(
+          "MedCo",
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'f',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.black,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return PatientProfile();
+                  },
+                ),
+              );
+            },
+          )
+        ],
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Color(0xff96f47e), Color(0xff17edf1)])),
-            height: MediaQuery.of(context).size.height / 2,
-            child: Column(children: [
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("add you image URL here "),
-                        fit: BoxFit.cover)),
-                child: Container(
-                  width: double.infinity,
-                  height: 170,
-                  child: Container(
-                    alignment: Alignment(0.0, 2.5),
-                    child: CircleAvatar(
-                      child: Icon(
-                        Icons.account_circle_sharp,
-                        size: 130,
+                  colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  'MedCo',
+                  style: TextStyle(
+                    fontFamily: 'f',
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'Home',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              selectedTileColor: Colors.grey[300],
+              title: const Text(
+                'Appointment',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return CurrAppointment();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Test Report',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return TestReport();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Hospitals',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowHospitals();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Lab',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowsLabs();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Ambulance',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ShowAmbulance();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Send Feedback',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return FeedbackPage();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Symptoms',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'f',
+                  fontSize: 25,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Symptoms();
+                    },
+                  ),
+                );
+                // Update the state of the app.
+                // ...
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                      contentPadding:
+                          const EdgeInsets.symmetric(vertical: 15.0),
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: const BorderSide(
+                          width: 1,
+                          color: Colors.black,
+                        ),
                       ),
-                      backgroundColor: Color(0xff1182d0),
-                      radius: 65.0,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: "Search By Hospitals",
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      suffixIcon: IconButton(
+                          icon: const Icon(Icons.clear),
+                          color: Colors.black,
+                          onPressed: () {})),
+                ),
+              ),
+              for(int i=0;i<Labs.length;i++)
+                 Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff96f47e), Color(0xff17edf1)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DoctorList(
+                              spec: "General Medicine",
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 125,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${Labs[i]['name']}',
+                            style: TextStyle(
+                              fontFamily: 'f',
+                              fontSize: 20,
+                            ),
+                          ),
+                          RatingBar.builder(
+                            itemSize: 25,
+                            initialRating: Labs[i]['rating'].toDouble(),
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
+                          Text(
+                            '${Labs[i]['address']}',
+                            style: TextStyle(
+                              fontFamily: 'f',
+                              fontSize: 15,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              launch(('tel://+91${Labs[i]['phone']}'));
+                            },
+                            icon: Icon(Icons.phone),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 60,
-              ),
-              Text(
-                "Name",
-                style: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.blueGrey,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "age:50",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black45,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.w300),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Place",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black45,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.w300),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Email || Phone Number",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black45,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.w300),
-              ),
-            ]),
-          ),
-          SizedBox(
-            height: 70,
-          ),
-          Column(
-            children: [
-              Container(
-                width: 300,
-                height: 70,
-                child: RaisedButton(
-                  color: Color(0xff1182d0),
-                  child: Text(
-                    "Appointment",
-                    style: TextStyle(color: Colors.white, fontFamily: 'A'),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return CurrAppointment();
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                width: 300,
-                height: 70,
-                child: RaisedButton(
-                  color: Color(0xff1182d0),
-                  child: Text(
-                    "Report",
-                    style: TextStyle(color: Colors.white, fontFamily: 'A'),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return TestReport();
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
+
+
             ],
           ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }
