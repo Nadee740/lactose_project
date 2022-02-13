@@ -7,12 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:lactose_project/Screen/BookAppointment.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/Login.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
+import 'package:lactose_project/Screen/signup.dart';
 
 class DoctorList extends StatefulWidget {
   const DoctorList({Key? key, required this.spec}) : super(key: key);
@@ -186,7 +188,7 @@ class _DoctorListState extends State<DoctorList> {
             ),
             ListTile(
               title: const Text(
-                'Hospitals',
+                'Hospital',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'f',
@@ -202,6 +204,7 @@ class _DoctorListState extends State<DoctorList> {
                     },
                   ),
                 );
+
                 // Update the state of the app.
                 // ...
               },
