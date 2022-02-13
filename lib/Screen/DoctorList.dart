@@ -15,21 +15,21 @@ import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
 
 class DoctorList extends StatefulWidget {
-  const DoctorList({Key? key,required this.spec}) : super(key: key);
-   final String spec;
+  const DoctorList({Key? key, required this.spec}) : super(key: key);
+  final String spec;
   @override
   State<DoctorList> createState() => _DoctorListState();
 }
 
 class _DoctorListState extends State<DoctorList> {
-
   bool loading = false;
 
   List<dynamic> Doctors = <dynamic>[];
   List<dynamic> FilteredDoctors = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "https://lactose-backend.herokuapp.com/doctors?specification=${widget.spec}";
+    var url =
+        "https://lactose-backend.herokuapp.com/doctors?specification=${widget.spec}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody['data'][0]['name']);
@@ -286,8 +286,9 @@ class _DoctorListState extends State<DoctorList> {
             )
           : SingleChildScrollView(
               child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(children: [
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: TextField(
@@ -390,13 +391,14 @@ class _DoctorListState extends State<DoctorList> {
                                         height: 5,
                                       ),
                                       Center(
-                                          child: Text(
-                                        FilteredDoctors[i]['name'].toString(),
-                                        style: TextStyle(
-                                          fontFamily: 'f',
-                                          fontSize: 15,
+                                        child: Text(
+                                          FilteredDoctors[i]['name'].toString(),
+                                          style: TextStyle(
+                                            fontFamily: 'f',
+                                            fontSize: 15,
+                                          ),
                                         ),
-                                      )),
+                                      ),
                                       Text(
                                         FilteredDoctors[i]['job_position']
                                             .toString(),
@@ -438,8 +440,11 @@ class _DoctorListState extends State<DoctorList> {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (BuildContext context) {
-                                                  return BookAppointment(docid: FilteredDoctors[i]['_id']);
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return BookAppointment(
+                                                      docid: FilteredDoctors[i]
+                                                          ['_id']);
                                                 },
                                               ),
                                             );
@@ -454,7 +459,10 @@ class _DoctorListState extends State<DoctorList> {
                           ),
                         ),
                       ),
-                  ]))),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }
