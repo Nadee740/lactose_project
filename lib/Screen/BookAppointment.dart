@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -25,17 +26,19 @@ class _BookAppointmentState extends State<BookAppointment> {
   Map Doctordata = Map<String, dynamic>();
   String date = "";
   String time = "";
-
+  final storage = new FlutterSecureStorage();
   final _defaultTimeRange = TimeRangeResult(
     TimeOfDay(hour: 14, minute: 50),
     TimeOfDay(hour: 15, minute: 20),
   );
   Future<void> SubmitAppointmnet() async {
-    var url = "https://lactose-backend.herokuapp.com/create-appointment";
+    var token = await storage.read(key: "jwtToken");
+    var url = "${Urlclass.url}create-appointment";
     var res = await http.post(
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ${token}'
       },
       body: jsonEncode(<String, String>{
         "patientid": UserData['_id'],
@@ -53,14 +56,14 @@ class _BookAppointmentState extends State<BookAppointment> {
   }
 
   Future<void> getDataFromApi() async {
-    var url = "https://lactose-backend.herokuapp.com/doctor/${widget.docid}";
+    var url = "${Urlclass.url}doctor/${widget.docid}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody);
 
     final storage = new FlutterSecureStorage();
 
-    var url1 = "https://lactose-backend.herokuapp.com/users/me";
+    var url1 = "${Urlclass.url}users/me";
     var token = await storage.read(key: "jwtToken");
 
     var response = await http.get(

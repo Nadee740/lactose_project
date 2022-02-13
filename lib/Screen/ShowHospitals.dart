@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/ShowAmbulance.dart';
@@ -23,7 +24,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
   List<dynamic> FilteredHospitals = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "https://lactose-backend.herokuapp.com/hospitals";
+    var url = "${Urlclass.url}hospitals";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
     print(responsebody['data'][0]['name']);

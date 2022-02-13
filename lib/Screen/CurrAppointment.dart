@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -21,10 +22,11 @@ class CurrAppointment extends StatefulWidget {
 class _CurrAppointmentState extends State<CurrAppointment> {
   Map Appointments = Map<String, dynamic>();
   bool loading = false;
+  String gmeet_link="";
   Future<void> getDataFromApi() async {
     final storage = new FlutterSecureStorage();
 
-    var url = "https://lactose-backend.herokuapp.com/appointments/me";
+    var url = "${Urlclass.url}appointments/me";
     var token = await storage.read(key: "jwtToken");
 
     var res = await http.get(
@@ -37,7 +39,8 @@ class _CurrAppointmentState extends State<CurrAppointment> {
     );
     // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY0ZmY0NmI2ZGZmZDZiMmMzNmFiNGUiLCJpYXQiOjE2NDM0NDYwODZ9.ETka6u8ShfXmpMNW7dTX_dHsCzeRYhJ8d2yeYXey1u0
     var responsebody = json.decode(res.body);
-    var url2 = "https://lactose-backend.herokuapp.com/doctor/61f52bd822ea8a21cc1edab6";
+    print(responsebody);
+    var url2 = "${Urlclass.url}doctor/${responsebody[responsebody.length - 1]['doctorId']}";
     var drres = await http.get(
       Uri.parse(url2),
       headers: <String, String>{
@@ -45,7 +48,7 @@ class _CurrAppointmentState extends State<CurrAppointment> {
       },
     );
     var responsebodydr = json.decode(drres.body);
-    var url3 = "https://lactose-backend.herokuapp.com/hospital/61f3a7172d4cbe443c39d66b";
+    var url3 = "${Urlclass.url}hospital/${responsebody[responsebody.length - 1]['hospitalid']}";
     var hospres = await http.get(
       Uri.parse(url3),
       headers: <String, String>{
@@ -53,8 +56,17 @@ class _CurrAppointmentState extends State<CurrAppointment> {
       },
     );
     var responsebodyhosp = json.decode(hospres.body);
+    var url4="${Urlclass.url}send-link/${responsebody[responsebody.length - 1]['doctorId']}";
+    var urlresponse=await http.get(Uri.parse(url4),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    var responseurl=json.decode(urlresponse.body);
+    print(responseurl['data']);
 
     setState(() {
+      gmeet_link=responseurl['data'];
       Appointments = {
         'res': responsebody[responsebody.length - 1],
         'dr': responsebodydr['data'],
@@ -368,7 +380,7 @@ class _CurrAppointmentState extends State<CurrAppointment> {
                       ),
                       Container(
                         child: GestureDetector(
-                          onTap: (){launch('https://open.spotify.com/playlist/18GohtNrNAEQKDoRGoCTt');},
+                          onTap: (){launch("https://${gmeet_link}");},
                           child: Text("Click here to join meeting", style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,fontSize: 15),
                           ),),
 

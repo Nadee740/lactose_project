@@ -1,6 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Feedback.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -9,23 +12,54 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
-
+import 'package:http/http.dart' as http;
 class Symptoms extends StatefulWidget {
   const Symptoms({Key? key}) : super(key: key);
 
   @override
   _SymptomsState createState() => _SymptomsState();
 }
-
+bool isloading=false;
 bool selected1 = false;
 bool selected2 = false;
 bool selected3 = false;
 bool selected4 = false;
 bool selected5 = false;
-
+var diseasedata;
+int i=0;
+List<String> symptoms = ["fever","cough","comiting","headache","stomach pain","body weakness","+other"];
+List<String> selectedsymptoms=[];
 class _SymptomsState extends State<Symptoms> {
+  List selected=[];
+  void SubmitSymptoms()async{
+    setState(() {
+      isloading=true;
+    });
+    var res = await http.post(
+      Uri.parse('${Urlclass.url}symptoms'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+
+      },
+      body: jsonEncode(<String, dynamic>{
+      'symptoms':selectedsymptoms
+      }),
+    );
+    var responsebody = json.decode(res.body);
+    setState(() {
+
+      if(responsebody['data'].length>0)
+         diseasedata=responsebody['data'][0];
+      isloading=false;
+      showAlertDialog(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+   for(int i=0;i<symptoms.length;i++)
+       selected.add(false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -178,7 +212,7 @@ class _SymptomsState extends State<Symptoms> {
                 );
                 // Update the state of the app.
                 // ...
-                Navigator.pop(context);
+
               },
             ),
             ListTile(
@@ -250,7 +284,14 @@ class _SymptomsState extends State<Symptoms> {
           ],
         ),
       ),
-      body: Container(
+      body:isloading? Container(
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.cyan,
+          ),
+        ),
+      ):Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -306,71 +347,28 @@ class _SymptomsState extends State<Symptoms> {
                   spacing: 5,
                   runSpacing: 3,
                   children: [
-                    Container(
-                      child: FilterChip(
-                        label: Text('Fever'),
-                        elevation: 10,
-                        pressElevation: 5,
-                        selected: selected1,
-                        selectedColor: Color(0xff17edf1),
-                        onSelected: (bool value) {
-                          selected1 = value;
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: FilterChip(
-                        label: Text('Cough'),
-                        selected: selected2,
-                        selectedColor: Color(0xff17edf1),
-                        elevation: 10,
-                        pressElevation: 5,
-                        onSelected: (bool value) {
-                          selected2 = value;
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: FilterChip(
-                        label: Text('Vomiting'),
-                        selected: selected3,
-                        selectedColor: Color(0xff17edf1),
-                        elevation: 10,
-                        pressElevation: 5,
-                        onSelected: (bool value) {
-                          selected3 = value;
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: FilterChip(
-                        label: Text('Vomiting'),
-                        selected: selected4,
-                        elevation: 10,
-                        selectedColor: Color(0xff17edf1),
-                        pressElevation: 5,
-                        onSelected: (bool value) {
-                          selected4 = value;
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: FilterChip(
-                        label: Text('+Other'),
-                        selected: selected5,
-                        elevation: 10,
-                        selectedColor: Color(0xff17edf1),
-                        pressElevation: 5,
-                        onSelected: (bool value) {
-                          selected5 = value;
-                          setState(() {});
-                        },
-                      ),
-                    ),
+                   for(int i=0;i<symptoms.length;i++)
+                     Container(
+                       child: FilterChip(
+                         label: Text('${symptoms[i]}'),
+                         selected: selected[i],
+                         selectedColor: Color(0xff17edf1),
+                         elevation: 10,
+                         pressElevation: 5,
+                         onSelected: (bool value) {
+
+                           setState(() {
+                             selected[i] = value;
+                             if(value)
+                             selectedsymptoms.add(symptoms[i]);
+                             else
+                               selectedsymptoms.remove(symptoms[i]);
+                           });
+
+                         },
+                       ),
+                     ),
+
                   ],
                 ),
               ),
@@ -394,8 +392,9 @@ class _SymptomsState extends State<Symptoms> {
                         color: Colors.black),
                   ),
                   onPressed: () {
-                    print('hi');
-                    showAlertDialog(context);
+                    SubmitSymptoms();
+                    // print('hi');
+                    // showAlertDialog(context);
                   }),
             ),
           ],
@@ -469,7 +468,7 @@ showAlertDialog(BuildContext context) {
               height: 15,
             ),
             Text(
-              'Corona',
+              diseasedata!=null?'${diseasedata['name']}':"no diesese found",
               style: TextStyle(
                 fontFamily: 'f',
                 fontSize: 18,
@@ -491,7 +490,7 @@ showAlertDialog(BuildContext context) {
               height: 15,
             ),
             Text(
-              '*Cover your nose and mouth when around others',
+              diseasedata!=null?'${diseasedata['precaution']}':"no diesese found",
               style: TextStyle(
                   fontFamily: 'f', fontSize: 18, fontWeight: FontWeight.w100),
             ),
@@ -519,4 +518,5 @@ showAlertDialog(BuildContext context) {
           child: alert);
     },
   );
+
 }

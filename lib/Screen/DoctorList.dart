@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/BookAppointment.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
@@ -31,10 +32,10 @@ class _DoctorListState extends State<DoctorList> {
   List<dynamic> FilteredDoctors = <dynamic>[];
 
   Future<void> getDataFromApi() async {
-    var url = "https://lactose-backend.herokuapp.com/doctors?specification=${widget.spec}";
+    var url = "${Urlclass.url}doctors?specification=${widget.spec}";
     var res = await http.get(Uri.parse(url));
     var responsebody = json.decode(res.body);
-    print(responsebody['data'][0]['name']);
+
 
     setState(() {
       Doctors = responsebody['data'];

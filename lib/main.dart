@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
 
 import 'package:lactose_project/Screen/BookAppointment.dart';
 
@@ -35,12 +36,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
 
-          home: Home(),
-      // home:true?ImagePickerTest():LoginPage(),
+
+      home:loggedin?Home():LoginPage(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
 void checkLogin() async {
   final storage = new FlutterSecureStorage();
 
-  var url = "https://lactose-backend.herokuapp.com/users/me";
+  var url = "${Urlclass.url}users/me";
   var token = await storage.read(key: "jwtToken");
 
   var res = await http.get(

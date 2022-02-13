@@ -16,14 +16,7 @@ import 'package:lactose_project/Screen/feedback.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
-  // Future<String> getData() async{
-  //   var res=await http.get(
-  //     Uri.encodeFull("http://localhost:8000/doctors"),
-  //     headers:{
-  //       "Accept":""
-  //     }
-  //   )
-  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -262,7 +255,7 @@ class Home extends StatelessWidget {
                 );
                 // Update the state of the app.
                 // ...
-                Navigator.pop(context);
+
               },
             ),
           ],

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/signup.dart';
 
@@ -18,8 +19,11 @@ class _LoginPageState extends State<LoginPage> {
   bool isloading = false;
   final storage = new FlutterSecureStorage();
   Future<void> SubmitLogin() async {
+    setState(() {
+      isloading=true;
+    });
     var res = await http.post(
-      Uri.parse('https://lactose-backend.herokuapp.com/users/login'),
+      Uri.parse('${Urlclass.url}users/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -30,7 +34,9 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     var responsebody = json.decode(res.body);
-    print(responsebody);
+     setState(() {
+       isloading=false;
+     });
     if (responsebody['status'].toString() == 'ok') {
       await storage.write(
           key: "jwtToken", value: responsebody['token'].toString());
@@ -39,8 +45,11 @@ class _LoginPageState extends State<LoginPage> {
         return Home();
       }));
     }
+else
+  {
+    showAlertDialog(context);
+  }
 
-    setState(() {});
   }
 
   @override
@@ -57,7 +66,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
           centerTitle: true,
         ),
-        body: Padding(
+        body: isloading? Container(
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.cyan,
+            ),
+          ),
+        ): Padding(
             padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
@@ -156,4 +172,55 @@ class _LoginPageState extends State<LoginPage> {
               ],
             )));
   }
+}
+showAlertDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("PROCEED",style: TextStyle(fontFamily: 'f'),),
+    onPressed: () {
+      Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                return ScaleTransition(
+                  scale: animation,
+                  alignment: Alignment.center,
+                  child: child,
+                );
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return Home();
+              }));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Invalid Login",style: TextStyle(fontFamily: 'f'),),
+    content: Text("Invalid Input",style: TextStyle(fontFamily: 'f'),),
+    actions: [
+      cancelButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return WillPopScope(
+          onWillPop: () async {
+            return true;
+            // Navigator.pushReplacement(
+            //     context, MaterialPageRoute(builder: (BuildContext context) {
+            //   return Home();
+            // }));
+          },
+          child: alert);
+    },
+  );
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/CurrAppointment.dart';
 import 'package:lactose_project/Screen/Home.dart';
 import 'package:lactose_project/Screen/PatientProfile.dart';
@@ -24,7 +25,7 @@ class _TestReportState extends State<TestReport> {
   Future<void> getDataFromApi() async {
     final storage = new FlutterSecureStorage();
 
-    var url = "https://lactose-backend.herokuapp.com/appointments/me";
+    var url = "${Urlclass.url}appointments/me";
     var token = await storage.read(key: "jwtToken");
 
     var res = await http.get(

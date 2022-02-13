@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:lactose_project/Db/Urlclass.dart';
 import 'package:lactose_project/Screen/Home.dart';
+import 'package:lactose_project/Screen/Login.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
   bool isloading = false;
   Future<void> SubmitSignup() async {
     var res = await http.post(
-      Uri.parse('https://lactose-backend.herokuapp.com/users'),
+      Uri.parse('$Urlclass.url}users'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -69,7 +71,14 @@ class _SignupPageState extends State<SignupPage> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
+      body: isloading ? Container(
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.cyan,
+          ),
+        ),
+      ) : Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
@@ -160,7 +169,7 @@ class _SignupPageState extends State<SignupPage> {
                 //forgot password screen
               },
               child: const Text(
-                'Already registered',
+                '',
                 style: TextStyle(
                   fontFamily: 'f',
                 ),
@@ -199,7 +208,7 @@ class _SignupPageState extends State<SignupPage> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return Home();
+                          return LoginPage();
                         },
                       ),
                     );
