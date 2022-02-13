@@ -18,6 +18,7 @@ import 'package:lactose_project/Screen/ShowAmbulance.dart';
 import 'package:lactose_project/Screen/ShowDoctorDetails.dart';
 import 'package:lactose_project/Screen/ShowHospitals.dart';
 import 'package:lactose_project/Screen/ShowLabs.dart';
+import 'package:lactose_project/Screen/SplashScreen.dart';
 import 'package:lactose_project/Screen/Symptoms.dart';
 import 'package:lactose_project/Screen/TestReport.dart';
 import 'package:lactose_project/Screen/feedback.dart';
@@ -25,6 +26,7 @@ import 'package:lactose_project/Screen/signup.dart';
 import 'package:http/http.dart' as http;
 
 bool loggedin = false;
+bool isloading=true;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   checkLogin();
@@ -40,9 +42,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
+    //home:SplashScreen(),
 
-
-      home:loggedin?Home():LoginPage(),
+      home:isloading?SplashScreen():loggedin?Home():LoginPage(),
 
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -70,5 +72,6 @@ void checkLogin() async {
   var responsebody = json.decode(res.body);
 
   responsebody['status'] == "failed" ? loggedin = false : loggedin = true;
+  isloading=false;
   return;
 }
