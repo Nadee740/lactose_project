@@ -49,8 +49,9 @@ class _ShowHospitalsState extends State<ShowHospitals> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MedCo"),
+        title: Text("MedCo",style: TextStyle(color: Colors.black),),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
         // leading: Icon(
         //   Icons.account_circle_rounded,
         // ),
@@ -59,7 +60,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
             child: IconButton(
               icon: Icon(
                 Icons.person,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 // do something
@@ -70,9 +71,6 @@ class _ShowHospitalsState extends State<ShowHospitals> {
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -328,71 +326,7 @@ class _ShowHospitalsState extends State<ShowHospitals> {
                         ),
                       ),
 
-                    // Card(
-                    //   child: InkWell(
-                    //     splashColor: Colors.blue.withAlpha(30),
-                    //     onTap: () {
-                    //       debugPrint('Card tapped.');
-                    //     },
-                    //     child: const SizedBox(
-                    //       width: double.infinity,
-                    //       height: 125,
-                    //       child: Text('NEUROlLOGIST'),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Card(
-                    //   child: InkWell(
-                    //     splashColor: Colors.blue.withAlpha(30),
-                    //     onTap: () {
-                    //       debugPrint('Card tapped.');
-                    //     },
-                    //     child: const SizedBox(
-                    //       width: double.infinity,
-                    //       height: 125,
-                    //       child: Text('PEDIATRICIANS'),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Card(
-                    //   child: InkWell(
-                    //     splashColor: Colors.blue.withAlpha(30),
-                    //     onTap: () {
-                    //       debugPrint('Card tapped.');
-                    //     },
-                    //     child: const SizedBox(
-                    //       width: double.infinity,
-                    //       height: 125,
-                    //       child: Text('CARDIOLOGISTS'),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Card(
-                    //   child: InkWell(
-                    //     splashColor: Colors.blue.withAlpha(30),
-                    //     onTap: () {
-                    //       debugPrint('Card tapped.');
-                    //     },
-                    //     child: const SizedBox(
-                    //       width: double.infinity,
-                    //       height: 125,
-                    //       child: Text('GYNECOLOGISTS'),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Card(
-                    //   child: InkWell(
-                    //     splashColor: Colors.blue.withAlpha(30),
-                    //     onTap: () {
-                    //       debugPrint('Card tapped.');
-                    //     },
-                    //     child: const SizedBox(
-                    //       width: double.infinity,
-                    //       height: 125,
-                    //       child: Text('DENTISTS'),
-                    //     ),
-                    //   ),
-                    // ),
+
                   ],
                 ),
               ),

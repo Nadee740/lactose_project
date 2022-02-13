@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: Symptoms(),
+
+          home: Home(),
       // home:true?ImagePickerTest():LoginPage(),
 
       theme: ThemeData(
